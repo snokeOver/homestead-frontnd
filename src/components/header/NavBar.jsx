@@ -67,7 +67,7 @@ const NavBar = () => {
             to="/"
           >
             <IoHome className="bg-blue-600 dark:bg-blue-700 rounded-full p-[.36rem] text-gray-200" />
-            Homestead
+            <span className="hidden md:flex">Homestead</span>
           </NavLink>
         </div>
       </div>
