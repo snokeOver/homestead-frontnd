@@ -3,3 +3,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+img {
+  width: 100%;
+  max-height: 750px;
+}
+
+.search_menu {
+  margin-inline-start: 0px;
+  padding-left: 0rem;
+  padding-bottom: 0rem;
+}
+.menu-horizontal > li:not(.menu-title) > details > ul {
+  margin-inline-start: 0px;
+  margin-top: 0.5rem;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 0.61rem;
+}

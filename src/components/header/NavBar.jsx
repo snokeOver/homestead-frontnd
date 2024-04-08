@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import ThemeButton from "./ThemeButton";
-
+import { IoHome } from "react-icons/io5";
 const NavBar = () => {
   const { loading, user } = useContext(AuthContext);
 
@@ -38,7 +38,7 @@ const NavBar = () => {
     <div className="navbar">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -62,7 +62,11 @@ const NavBar = () => {
           </ul>
         </div>
         <div>
-          <NavLink className="text-3xl font-semibold font-rubik" to="/">
+          <NavLink
+            className="text-3xl font-semibold font-rubik flex items-center gap-2"
+            to="/"
+          >
+            <IoHome className="bg-blue-600 dark:bg-blue-700 rounded-full p-[.36rem] text-gray-200" />
             Homestead
           </NavLink>
         </div>
