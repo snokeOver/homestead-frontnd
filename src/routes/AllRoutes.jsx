@@ -8,6 +8,9 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import UpdateProfile from "../pages/UpdateProfile";
 import UserProfile from "../pages/UserProfile";
+import PrivateRoutes from "./PrivateRoutes";
+import PublicRoutes from "./PublicRoutes";
+import EstateDetails from "../pages/EstateDetails";
 
 const router = createBrowserRouter([
   {
@@ -28,23 +31,43 @@ const router = createBrowserRouter([
       },
       {
         path: "/update-profile",
-        element: <UpdateProfile />,
+        element: (
+          <PrivateRoutes>
+            <UpdateProfile />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/user-profile",
-        element: <UserProfile />,
+        element: (
+          <PrivateRoutes>
+            <UserProfile />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/estate-details",
-        element: <TextEncoderStream />,
+        element: (
+          <PrivateRoutes>
+            <EstateDetails />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <PublicRoutes>
+            <Login />
+          </PublicRoutes>
+        ),
       },
       {
         path: "/register",
-        element: <Register />,
+        element: (
+          <PublicRoutes>
+            <Register />
+          </PublicRoutes>
+        ),
       },
       {
         path: "*",

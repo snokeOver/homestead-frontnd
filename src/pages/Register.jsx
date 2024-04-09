@@ -1,10 +1,5 @@
 import { BsEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-} from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
-import auth from "../services/firebaseConfig.js";
 import { Link } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";

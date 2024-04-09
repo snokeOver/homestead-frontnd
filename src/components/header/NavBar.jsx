@@ -1,18 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import ThemeButton from "./ThemeButton";
 import { IoHome } from "react-icons/io5";
 const NavBar = () => {
-  const { loading, user } = useContext(AuthContext);
+  const { loading, user, setUser, logOut } = useContext(AuthContext);
+
+  const [isHovering, setIsHovering] = useState(false);
 
   const handleLogOut = () => {
-    //   logOut()
-    //     .then((result) => {
-    //       console.log(result);
-    //       setUser(null);
-    //     })
-    //     .catch((err) => console.log(err.message));
+    logOut()
+      .then((result) => {
+        console.log(result);
+        setUser(null);
+      })
+      .catch((err) => console.log(err.message));
   };
 
   const navLinks = (
@@ -26,14 +28,19 @@ const NavBar = () => {
       <li>
         <NavLink to="/contact">Contact</NavLink>
       </li>
-      <li>
-        <NavLink to="/user-profile">User Profile</NavLink>
-      </li>
-      <li>
-        <NavLink to="/update-profile">Update Profile</NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/user-profile">User Profile</NavLink>
+          </li>
+          <li>
+            <NavLink to="/update-profile">Update Profile</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
+
   return (
     <div className="navbar">
       <div className="navbar-start">
@@ -82,18 +89,27 @@ const NavBar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="relative btn btn-ghost btn-circle avatar mr-1"
             >
-              <div className="w-8 rounded-full">
+              <div
+                className="w-8 rounded-full"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
                 <img
                   alt="Tailwind CSS Navbar component"
                   src="https://i.ibb.co/vxg6nY4/user.png"
                 />
+                {isHovering && (
+                  <div className="absolute  top-14 -left-1 shadow-md py-2 px-4 rounded-lg">
+                    {user.displayName}
+                  </div>
+                )}
               </div>
             </div>
             <Link
               onClick={handleLogOut}
-              className="btn btn-neutral px-10 rounded-none btn-sm"
+              className="btn btn-neutral px-3 rounded-none btn-sm"
               to="/"
             >
               Logout
@@ -102,7 +118,7 @@ const NavBar = () => {
         ) : (
           <>
             {loading ? (
-              <span className="loading loading-spinner text-warning"></span>
+              <span className="loading loading-ring loading-lg"></span>
             ) : (
               <Link
                 className="btn btn-neutral px-3 rounded-sm btn-sm"
