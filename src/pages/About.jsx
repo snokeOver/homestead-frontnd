@@ -2,7 +2,7 @@ import SocialLinks from "../components/sharedComponents/SocialLinks";
 
 const About = () => {
   return (
-    <div className="my-10 xl:my-28 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
+    <div className="my-10 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
       <div className="my-10">
         <h3 className="text-3xl font-semibold mb-5">Homestead History</h3>
       </div>

@@ -5,9 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../providers/AuthProvider.jsx";
+import SpinnerAtButton from "../components/sharedComponents/SpinnerAtButton.jsx";
+import GithubButton from "../components/sharedComponents/GithubButton.jsx";
+import GoogleButton from "../components/sharedComponents/GoogleButton.jsx";
 
 const Login = () => {
-  const { signInUser, user, setLoading } = useContext(AuthContext);
+  const { signInUser, googleRegister, githubRegister } =
+    useContext(AuthContext);
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -16,8 +21,8 @@ const Login = () => {
 
   const [googleErrMsg, setGoogleErrMsg] = useState("");
 
-  const [successMsg, setSuccessMsg] = useState("");
   const [showPass, setShowPass] = useState(false);
+  const [pageLoading, setPageLoading] = useState(false);
 
   // This should handle all the changes of different fields
   const handleChange = (e) => {
@@ -37,26 +42,16 @@ const Login = () => {
   // This should handle submission of form
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setPageLoading(true);
     setGoogleErrMsg("");
-    setSuccessMsg("");
 
     signInUser(formData.email, formData.password)
       .then((result) => {
-        const user = result.user;
-
-        navigate("/");
+        firebaseRegiSuccess(result);
       })
       .catch((err) => {
-        console.log(err.message);
-        console.log(err.code);
-        if (err.code === "auth/invalid-credential") {
-          setGoogleErrMsg("Either email or password is wrong!");
-        } else {
-          setGoogleErrMsg(err.code);
-        }
-        setSuccessMsg("");
+        firebaseRegisterError(err);
       });
-    setLoading(false);
     setFormData({
       email: "",
       password: "",
@@ -68,8 +63,49 @@ const Login = () => {
     setGoogleErrMsg();
   }, []);
 
+  // handle the Register with Google button
+  const handleGoogleRegister = () => {
+    googleRegister()
+      .then((result) => {
+        firebaseRegiSuccess(result);
+      })
+      .catch((err) => {
+        firebaseRegisterError(err);
+      });
+  };
+
+  // Handle the Register with Github button
+  const handleGithubRegister = () => {
+    githubRegister()
+      .then((result) => {
+        firebaseRegiSuccess(result);
+      })
+      .catch((err) => {
+        firebaseRegisterError(err);
+      });
+  };
+
+  // handle Firebase error while registering
+  const firebaseRegisterError = (err) => {
+    console.log(err.message);
+    console.log(err.code);
+    if (err.code === "auth/invalid-credential") {
+      setGoogleErrMsg("Either email or password is wrong!");
+    } else {
+      setGoogleErrMsg(err.code);
+    }
+    setPageLoading(false);
+  };
+
+  // Handle firebase Registration success
+  const firebaseRegiSuccess = (result) => {
+    const user = result.user;
+    setPageLoading(false);
+    navigate("/");
+  };
+
   return (
-    <div className="my-10 xl:my-28 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
+    <div className="my-10  container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
       <div className="hero py-24 bg-base-100 rounded-xl">
         <div className="hero-content  w-full flex-col">
           <div className="text-center lg:text-left ">
@@ -114,14 +150,34 @@ const Login = () => {
               </div>
 
               <div className="form-control mt-6">
-                <button className="btn btn-primary ">Login</button>
+                <button className="btn btn-primary ">
+                  {pageLoading && <SpinnerAtButton />}
+                  Login
+                </button>
               </div>
-              <label className="label  flex justify-center">
+            </form>
+            <div className="divider px-4">OR</div>
+            <div className="card-body pt-0">
+              {/* Login with google */}
+              <div className="form-control mt-6">
+                <GoogleButton
+                  text="Login with Google"
+                  handleBtn={handleGoogleRegister}
+                />
+              </div>
+              {/* Login with GitHub */}
+              <div className="form-control mt-6">
+                <GithubButton
+                  text="Login with Github"
+                  handleBtn={handleGithubRegister}
+                />
+              </div>
+              <label className="label  flex justify-center mt-5">
                 <Link className="label-text-alt link link-hover" to="/register">
                   Don't have an account?
                 </Link>
               </label>
-            </form>
+            </div>
 
             <ToastContainer />
           </div>

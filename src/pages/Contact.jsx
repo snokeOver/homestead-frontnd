@@ -28,8 +28,8 @@ const Contact = () => {
     });
   };
   return (
-    <div className="my-10 xl:my-28 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
-      <div className="hero py-10 bg-base-200 rounded-lg md:w-[90%] mx-auto">
+    <div className="my-10 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
+      <div className="hero py-10 mt-10 bg-base-200 rounded-lg md:w-[90%] mx-auto">
         <div className="hero-content flex-col lg:gap-24 lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Contact now!</h1>

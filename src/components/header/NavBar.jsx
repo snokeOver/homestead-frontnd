@@ -1,18 +1,19 @@
 import { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import ThemeButton from "./ThemeButton";
 import { IoHome } from "react-icons/io5";
 const NavBar = () => {
   const { loading, user, setUser, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [isHovering, setIsHovering] = useState(false);
 
   const handleLogOut = () => {
     logOut()
       .then((result) => {
-        console.log(result);
         setUser(null);
+        navigate("/login");
       })
       .catch((err) => console.log(err.message));
   };
@@ -40,6 +41,11 @@ const NavBar = () => {
       )}
     </>
   );
+
+  // fallback for Profile image to show default image
+  const handleImageError = (event) => {
+    event.target.src = "https://i.ibb.co/vxg6nY4/user.png";
+  };
 
   return (
     <div className="navbar">
@@ -97,8 +103,9 @@ const NavBar = () => {
                 onMouseLeave={() => setIsHovering(false)}
               >
                 <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://i.ibb.co/vxg6nY4/user.png"
+                  alt="User Photo"
+                  src={user?.photoURL}
+                  onError={handleImageError}
                 />
                 {isHovering && (
                   <div className="absolute  top-14 -left-1 shadow-md py-2 px-4 rounded-lg">

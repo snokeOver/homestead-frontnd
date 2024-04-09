@@ -4,11 +4,13 @@ import { Navigate } from "react-router-dom";
 import PageSkeleton from "../components/sharedComponents/PageSkeleton";
 
 const PublicRoutes = ({ children }) => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, regiSuccess } = useContext(AuthContext);
+  // console.log("Insite public:", regiSuccess);
+
   if (loading) {
     return <PageSkeleton />;
   }
-  if (!user) {
+  if (!user || regiSuccess) {
     return children;
   }
   return <Navigate to="/"></Navigate>;

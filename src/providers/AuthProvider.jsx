@@ -1,8 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -13,24 +16,35 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [regiSuccess, setRegiSuccess] = useState(false);
 
   const registerUser = (email, password) => {
-    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const updateProfileInfo = (user, data) => {
-    setLoading(true);
+    // setLoading(true);
     return updateProfile(user, data);
   };
 
   const signInUser = (email, password) => {
-    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const logOut = () => {
     return signOut(auth);
+  };
+
+  // Register with Google
+  const googleRegister = () => {
+    const googleProvider = new GoogleAuthProvider();
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  // Register with Google
+  const githubRegister = () => {
+    const githubProvider = new GithubAuthProvider();
+    return signInWithPopup(auth, githubProvider);
   };
 
   useEffect(() => {
@@ -43,6 +57,7 @@ const AuthProvider = ({ children }) => {
       } else {
         setUser(null);
         setLoading(false);
+        setRegiSuccess(true);
       }
       return () => unSubscribe();
     });
@@ -57,8 +72,12 @@ const AuthProvider = ({ children }) => {
     registerUser,
     updateProfileInfo,
     signInUser,
+    setRegiSuccess,
+    regiSuccess,
+    googleRegister,
+    githubRegister,
   };
-
+  // console.log("inside context:", regiSuccess);
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
