@@ -2,12 +2,12 @@ import SocialLinks from "../components/sharedComponents/SocialLinks";
 
 const About = () => {
   return (
-    <div className="my-10 lg:my-28 container bg-base-100 mx-auto px-5 md:p-10 min-h-screen">
+    <div className="my-10 xl:my-28 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
       <div className="my-10">
         <h3 className="text-3xl font-semibold mb-5">Homestead History</h3>
       </div>
       <div className="card card-side bg-base-200 shadow-xl flex flex-col xl:flex-row gap-6 lg:gap-0">
-        <figure className="flex-1">
+        <figure className="flex-1 p-3">
           <img
             className="rounded-2xl"
             src="https://i.ibb.co/8xRj4Rf/about-page.jpg"
@@ -60,7 +60,7 @@ const About = () => {
             <p>Monday - Friday, 9:00 AM - 5:00 PM</p>
           </div>
         </div>
-        <div className="flex items-center px-2 ">
+        <div className="flex items-center p-3 ">
           <img
             className="rounded-xl"
             src="https://i.ibb.co/JKD5rvZ/google-maps.png"
