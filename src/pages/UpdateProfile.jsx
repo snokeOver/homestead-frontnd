@@ -66,8 +66,8 @@ const UpdateProfile = () => {
       <div className="my-10 flex flex-col gap-6">
         <div className="card  w-full lg:w-1/2 mx-auto bg-base-100 shadow-xl rounded-md">
           <div className="card-body flex items-center ">
-            <h2 className="card-title">Update Your Profile</h2>
-            <div className="w-28 h-28">
+            <h2 className="card-title text-3xl">Update Your Profile</h2>
+            <div className="w-48 mt-5">
               <img
                 className="rounded-xl"
                 alt="User Photo"

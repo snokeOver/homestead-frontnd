@@ -15,6 +15,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [estates, setEstates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [regiSuccess, setRegiSuccess] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
@@ -48,6 +49,7 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
 
+  // watch for the change in user
   useEffect(() => {
     setLoading(true);
     const unSubscribe = onAuthStateChanged(auth, (currUser) => {
@@ -62,6 +64,13 @@ const AuthProvider = ({ children }) => {
       }
       return () => unSubscribe();
     });
+  }, []);
+
+  // load the estate data
+  useEffect(() => {
+    fetch("/residents.json")
+      .then((data) => data.json())
+      .then((data) => setEstates(data));
   }, []);
 
   const authInfo = {
@@ -79,6 +88,8 @@ const AuthProvider = ({ children }) => {
     githubRegister,
     loginSuccess,
     setLoginSuccess,
+    estates,
+    setEstates,
   };
   // console.log("inside context:", regiSuccess);
   return (
