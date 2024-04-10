@@ -16,9 +16,14 @@ import "swiper/css/effect-cube";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Banner = () => {
+  const { loginSuccess, setLoginSuccess } = useContext(AuthContext);
+
   const [images, setImages] = useState([]);
   useEffect(() => {
     fetch("/sliderImages.json")
@@ -29,6 +34,15 @@ const Banner = () => {
   const handleSearchButton = (e) => {
     e.preventDefault();
   };
+
+  // Login success Toast
+  useEffect(() => {
+    if (loginSuccess) {
+      toast("Login Successfull!");
+      setLoginSuccess(false);
+    }
+  }, [loginSuccess]);
+
   return (
     <div className="py-10 relative z-0">
       <Swiper
@@ -86,6 +100,7 @@ const Banner = () => {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -10,7 +10,7 @@ import GithubButton from "../components/sharedComponents/GithubButton.jsx";
 import GoogleButton from "../components/sharedComponents/GoogleButton.jsx";
 
 const Login = () => {
-  const { signInUser, googleRegister, githubRegister } =
+  const { signInUser, googleRegister, githubRegister, setLoginSuccess } =
     useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -47,10 +47,10 @@ const Login = () => {
 
     signInUser(formData.email, formData.password)
       .then((result) => {
-        firebaseRegiSuccess(result);
+        firebaseLoginSuccess(result);
       })
       .catch((err) => {
-        firebaseRegisterError(err);
+        firebaseLoginError(err);
       });
     setFormData({
       email: "",
@@ -67,10 +67,10 @@ const Login = () => {
   const handleGoogleRegister = () => {
     googleRegister()
       .then((result) => {
-        firebaseRegiSuccess(result);
+        firebaseLoginSuccess(result);
       })
       .catch((err) => {
-        firebaseRegisterError(err);
+        firebaseLoginError(err);
       });
   };
 
@@ -78,15 +78,15 @@ const Login = () => {
   const handleGithubRegister = () => {
     githubRegister()
       .then((result) => {
-        firebaseRegiSuccess(result);
+        firebaseLoginSuccess(result);
       })
       .catch((err) => {
-        firebaseRegisterError(err);
+        firebaseLoginError(err);
       });
   };
 
   // handle Firebase error while registering
-  const firebaseRegisterError = (err) => {
+  const firebaseLoginError = (err) => {
     console.log(err.message);
     console.log(err.code);
     if (err.code === "auth/invalid-credential") {
@@ -97,8 +97,9 @@ const Login = () => {
     setPageLoading(false);
   };
 
-  // Handle firebase Registration success
-  const firebaseRegiSuccess = (result) => {
+  // Handle firebase Login success
+  const firebaseLoginSuccess = (result) => {
+    setLoginSuccess(true);
     const user = result.user;
     setPageLoading(false);
     navigate("/");

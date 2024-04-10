@@ -1,7 +1,7 @@
 import { FaGithub } from "react-icons/fa";
 const GithubButton = ({ text, handleBtn }) => {
   return (
-    <button onClick={handleBtn} className="btn  btn-outline btn-success ">
+    <button onClick={handleBtn} className="btn  btn-outline btn-info ">
       <FaGithub />
       <span className="ml-1">{text}</span>
     </button>

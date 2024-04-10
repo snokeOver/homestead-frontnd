@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [regiSuccess, setRegiSuccess] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const registerUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -76,6 +77,8 @@ const AuthProvider = ({ children }) => {
     regiSuccess,
     googleRegister,
     githubRegister,
+    loginSuccess,
+    setLoginSuccess,
   };
   // console.log("inside context:", regiSuccess);
   return (

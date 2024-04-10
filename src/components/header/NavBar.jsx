@@ -3,8 +3,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import ThemeButton from "./ThemeButton";
 import { IoHome } from "react-icons/io5";
+
 const NavBar = () => {
-  const { loading, user, setUser, logOut } = useContext(AuthContext);
+  const { loading, user, setUser, logOut, loginSuccess, setLoginSuccess } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   const [isHovering, setIsHovering] = useState(false);

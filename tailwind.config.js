@@ -16,7 +16,7 @@ export default {
       {
         light: {
           ...require("daisyui/src/theming/themes")["light"],
-          primary: "blue",
+          primary: "#2196F3",
           secondary: "teal",
           ".navbarr": {
             "background-color": "#e0dede",
