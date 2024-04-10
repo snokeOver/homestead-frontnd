@@ -1,6 +1,6 @@
 import { BsEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,6 +14,7 @@ const Login = () => {
     useContext(AuthContext);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -102,7 +103,7 @@ const Login = () => {
     setLoginSuccess(true);
     const user = result.user;
     setPageLoading(false);
-    navigate("/");
+    navigate(location?.state ? location.state : "/");
   };
 
   return (

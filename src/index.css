@@ -23,3 +23,7 @@ img {
 .swiper-button-next:after {
   font-size: 0.61rem;
 }
+
+.swiper-3d {
+  perspective: none;
+}

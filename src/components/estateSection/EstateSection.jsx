@@ -9,12 +9,11 @@ const EstateSection = () => {
   const navigate = useNavigate();
 
   const handleShowDetailsBtn = (id) => {
-    console.log("show Details");
     navigate(`/estate-details/${id}`);
   };
 
   return (
-    <div className="py-10 lg:py-20 px-2">
+    <div className="py-10 px-2">
       <SectionTitle
         title="Popular Properties"
         subTitle="Recent properties  offer modern amenities, convenient locations, and stylish designs to meet the evolving needs of yours."

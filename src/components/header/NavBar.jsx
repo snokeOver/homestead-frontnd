@@ -81,7 +81,7 @@ const NavBar = () => {
             className="text-3xl font-semibold font-rubik flex items-center gap-2"
             to="/"
           >
-            <IoHome className="bg-blue-600 dark:bg-blue-700 rounded-full p-[.36rem] text-gray-200" />
+            <IoHome className="bg-primary rounded-full p-[.36rem] text-gray-200" />
             <span className="hidden md:flex">Homestead</span>
           </NavLink>
         </div>
@@ -110,15 +110,17 @@ const NavBar = () => {
                   onError={handleImageError}
                 />
                 {isHovering && (
-                  <div className="absolute  top-14 -left-1 shadow-md py-2 px-4 rounded-lg">
-                    {user.displayName}
+                  <div className="absolute bg-base-100 top-14 -left-28 text-xs text-left shadow-md py-5 px-4 rounded-lg z-10">
+                    <h3> {user.displayName}</h3>
+                    <div className="divider my-1"></div>
+                    <h3> {user.email}</h3>
                   </div>
                 )}
               </div>
             </div>
             <Link
               onClick={handleLogOut}
-              className="btn btn-neutral px-3 rounded-none btn-sm"
+              className="btn btn-primary px-3 rounded-none btn-sm"
               to="/"
             >
               Logout
@@ -129,12 +131,20 @@ const NavBar = () => {
             {loading ? (
               <span className="loading loading-ring loading-lg"></span>
             ) : (
-              <Link
-                className="btn btn-neutral px-3 rounded-sm btn-sm"
-                to="/login"
-              >
-                Login
-              </Link>
+              <>
+                <Link
+                  className="btn btn-outline btn-success dark:btn-info px-3 rounded-sm btn-sm mr-3"
+                  to="/register"
+                >
+                  Register
+                </Link>
+                <Link
+                  className="btn btn-primary px-3 rounded-sm btn-sm"
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </>
             )}
           </>
         )}

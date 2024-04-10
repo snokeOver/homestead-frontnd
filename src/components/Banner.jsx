@@ -55,6 +55,7 @@ const Banner = () => {
           shadowOffset: 20,
           shadowScale: 0.94,
         }}
+        loop={true}
         spaceBetween={50}
         slidesPerView={1}
         navigation

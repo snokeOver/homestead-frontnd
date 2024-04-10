@@ -42,7 +42,7 @@ const EstateCard = ({ estate, handleShowDetailsBtn }) => {
             onClick={() => handleShowDetailsBtn(estate.id)}
             className="btn btn-primary w-full  px-6 py-3 mb-3 border-none rounded-md"
           >
-            Details
+            View Property
           </button>
         </div>
       </div>

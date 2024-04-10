@@ -22,15 +22,30 @@ const EstateDetails = () => {
     }
   }, [estates]);
 
+  // for smooth scroll to the target section
+  function smoothTransition() {
+    document
+      .querySelector("#targetSection")
+      .scrollIntoView({ behavior: "smooth" });
+  }
+
+  useEffect(() => {
+    console.log;
+    if (!pageLoading) smoothTransition();
+  }, [pageLoading]);
+
   return (
-    <div className="my-10 lg:my-36 container mx-auto px-5 xl:px-0 min-h-screen">
+    <div className="my-10 lg:my-20 container mx-auto px-5 xl:px-0 min-h-screen">
       <div className="card card-compact w-full bg-base-100   px-4 py-4 work-font">
         {pageLoading ? (
           <div>
             <PageSkeleton />
           </div>
         ) : (
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:p-8">
+          <div
+            id="targetSection"
+            className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:p-8"
+          >
             <figure className="w-full mx-auto rounded-xl ">
               <img
                 className="h-full py-4 "
@@ -44,14 +59,17 @@ const EstateDetails = () => {
               </h2>
 
               <div className="flex justify-between  font-mediumpy-5 mt-3 text-message-color">
-                <h4 className="text-md text-left">{estateToShow.price}</h4>
+                <h4 className="text-lg text-left">{estateToShow.price}</h4>
                 <h5 className=" px-4 py-1 bg-primary text-gray-100 font-semibold rounded-xl">
                   {estateToShow.status}
                 </h5>
               </div>
 
               <div className="my-2">
-                <span className="font-extrabold mr-2">Description:</span> <br />
+                <span className="font-extrabold text-lg mr-2">
+                  Description:
+                </span>{" "}
+                <br />
                 <p className="text-justify">{estateToShow.description}</p>
               </div>
               <div className="my-2">
