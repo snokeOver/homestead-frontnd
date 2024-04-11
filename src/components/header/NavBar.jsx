@@ -3,9 +3,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import ThemeButton from "./ThemeButton";
 import { IoHome } from "react-icons/io5";
+import RingLoading from "../sharedComponents/RingLoading";
 
 const NavBar = () => {
-  const { loading, user, setUser, logOut, loginSuccess, setLoginSuccess } =
+  const { loading, user, setUser, logOut, cartNumber } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -52,29 +53,47 @@ const NavBar = () => {
           Contact
         </NavLink>
       </li>
-      {user && (
-        <>
-          <li>
-            <NavLink
-              to="/user-profile"
-              className={({ isActive }) =>
-                `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
-              }
-            >
-              User Profile
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/update-profile"
-              className={({ isActive }) =>
-                `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
-              }
-            >
-              Update Profile
-            </NavLink>
-          </li>
-        </>
+      {loading ? (
+        <RingLoading />
+      ) : (
+        user && (
+          <>
+            <li>
+              <NavLink
+                to="/user-profile"
+                className={({ isActive }) =>
+                  `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
+                }
+              >
+                Profile
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/update-profile"
+                className={({ isActive }) =>
+                  `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
+                }
+              >
+                Update Profile
+              </NavLink>
+            </li>
+            <li className="relative hidden lg:block">
+              <NavLink
+                to="/cart"
+                className={({ isActive }) =>
+                  `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
+                }
+              >
+                Cart
+              </NavLink>
+
+              <div className="absolute right-1 -top-0 navbar-badge bg-primary rounded-full font-semibold flex justify-center">
+                <span>{cartNumber}</span>
+              </div>
+            </li>
+          </>
+        )
       )}
     </>
   );
@@ -122,8 +141,37 @@ const NavBar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+        <ul className="menu menu-horizontal px-1">{navLinks} </ul>
       </div>
+      {loading ? (
+        <div className="lg:hidden">
+          <RingLoading />
+        </div>
+      ) : (
+        user && (
+          <div className="navbar-center lg:hidden">
+            <ul className="menu menu-horizontal px-1">
+              <li className="relative">
+                <NavLink
+                  to="/cart"
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "border border-primary bg-base-100" : ""
+                    } mr-1`
+                  }
+                >
+                  Cart
+                </NavLink>
+
+                <div className="absolute right-1 -top-0 navbar-badge bg-primary hover:bg-primary rounded-full font-semibold flex justify-center">
+                  <span>{cartNumber}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        )
+      )}
+
       <div className="navbar-end">
         <ThemeButton />
 
@@ -164,7 +212,7 @@ const NavBar = () => {
         ) : (
           <>
             {loading ? (
-              <span className="loading loading-ring loading-lg"></span>
+              <RingLoading />
             ) : (
               <>
                 <Link

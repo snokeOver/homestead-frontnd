@@ -1,8 +1,9 @@
 import { FaLocationDot } from "react-icons/fa6";
 import { LuScale3D } from "react-icons/lu";
 import { IoBedOutline } from "react-icons/io5";
+import { BsFillEyeFill, BsCart4 } from "react-icons/bs";
 
-const EstateCard = ({ estate, handleShowDetailsBtn }) => {
+const EstateCard = ({ estate, handleShowDetailsBtn, handleAddCartButton }) => {
   return (
     <div className="card card-compact w-auto bg-base-100 rounded-xl  group-hover:scale-[0.97] hover:!scale-100 duration-500  border">
       <figure className="relative mb-3">
@@ -37,12 +38,20 @@ const EstateCard = ({ estate, handleShowDetailsBtn }) => {
             <h3>{estate.rooms_number}</h3>
           </div>
         </div>
-        <div className="pt-3">
+        <div className="pt-3 flex gap-4">
           <button
             onClick={() => handleShowDetailsBtn(estate.id)}
-            className="btn btn-primary w-full  px-6 py-3 mb-3 border-none rounded-md"
+            className="btn btn-primary btn-outline flex-1   py-3 mb-3  rounded-md"
           >
+            <BsFillEyeFill className="text-xl" />
             View Property
+          </button>
+          <button
+            onClick={() => handleAddCartButton(estate.id)}
+            className="btn btn-secondary btn-outline flex-1   py-3 mb-3  rounded-md"
+          >
+            <BsCart4 className=" text-xl" />
+            Add To Cart
           </button>
         </div>
       </div>

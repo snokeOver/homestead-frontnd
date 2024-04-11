@@ -52,7 +52,7 @@ const About = () => {
           <div className="xl:col-span-2">
             <OfficeLocations />
           </div>
-          <div className=" xl:col-span-3 bg-base-200 shadow-xl mx-3  min-h-96 grid items-center ">
+          <div className=" xl:col-span-3 bg-base-200 shadow-xl mx-3 min-h-96 grid items-center ">
             <CustomMap />
           </div>
         </div>

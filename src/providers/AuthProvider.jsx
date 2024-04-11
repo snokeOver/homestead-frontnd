@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../services/firebaseConfig.js";
+import { getPropertyIds } from "../services/storeCartItems.js";
 
 export const AuthContext = createContext();
 
@@ -19,6 +20,8 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [regiSuccess, setRegiSuccess] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
+
+  const [cartNumber, setCartNumber] = useState(0);
 
   const registerUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -68,6 +71,8 @@ const AuthProvider = ({ children }) => {
 
   // load the estate data
   useEffect(() => {
+    const currentPropertyArr = getPropertyIds();
+    setCartNumber(currentPropertyArr.length);
     fetch("/residents.json")
       .then((data) => data.json())
       .then((data) => setEstates(data));
@@ -90,6 +95,8 @@ const AuthProvider = ({ children }) => {
     setLoginSuccess,
     estates,
     setEstates,
+    cartNumber,
+    setCartNumber,
   };
   // console.log("inside context:", regiSuccess);
   return (

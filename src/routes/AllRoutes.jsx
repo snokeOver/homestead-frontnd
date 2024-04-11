@@ -11,6 +11,7 @@ import UserProfile from "../pages/UserProfile";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
 import EstateDetails from "../pages/EstateDetails";
+import Cart from "../pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <EstateDetails />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/cart",
+        element: (
+          <PrivateRoutes>
+            <Cart />
           </PrivateRoutes>
         ),
       },
