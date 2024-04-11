@@ -27,3 +27,21 @@ img {
 .swiper-3d {
   perspective: none;
 }
+
+/* sizing of map container */
+.leaflet-container {
+  height: 90%;
+}
+
+/* Marker cluster style*/
+.marker-cluster-small div {
+  background-color: #18e033 !important;
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 30px !important;
+}
+.marker-cluster-small div span {
+  color: black;
+  font-weight: 800;
+  font-size: 1.2rem;
+}

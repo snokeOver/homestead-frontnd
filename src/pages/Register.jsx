@@ -9,6 +9,7 @@ import SpinnerAtButton from "../components/sharedComponents/SpinnerAtButton.jsx"
 
 import GoogleButton from "../components/sharedComponents/GoogleButton.jsx";
 import GithubButton from "../components/sharedComponents/GithubButton.jsx";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const {
@@ -240,168 +241,173 @@ const Register = () => {
   };
 
   return (
-    <div className="my-10  container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
-      <div className="hero py-10 bg-base-100 rounded-xl">
-        <div className="hero-content  w-full flex-col">
-          <div className="text-center lg:text-left ">
-            <h1 className="text-4xl font-bold">
-              {successMsg || "Register Here"}
-            </h1>
-          </div>
-          <div className="card w-full max-w-lg shadow-2xl bg-base-100">
-            {successMsg ? (
-              <div className="my-10 mx-8 min-h-24">
-                <Link to="/user-profile">
-                  <button
-                    onClick={handleGoToButton}
-                    className="btn btn-primary w-full"
-                  >
-                    Go to Your Profile
-                  </button>
-                </Link>
-              </div>
-            ) : (
-              <>
-                <form className="card-body" onSubmit={handleFormSubmit}>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Your Name</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="name"
-                      value={formData.name || ""}
-                      className="input input-bordered"
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  {errMsg.nameErrMsg && (
-                    <p className="text-red-500 dark:text-yellow-400 dark:font-light text-center mt-3">
-                      {errMsg.nameErrMsg}
-                    </p>
-                  )}
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Email</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="name@domain.com"
-                      value={formData.email || ""}
-                      className="input input-bordered"
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Your Photo URL</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="photoUrl"
-                      placeholder="photo url"
-                      value={formData.photoUrl || ""}
-                      className="input input-bordered"
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  {errMsg.photoUrlErrMsg && (
-                    <p className="text-red-500 dark:text-yellow-400 dark:font-light text-center mt-3">
-                      {errMsg.photoUrlErrMsg}
-                    </p>
-                  )}
-                  <div className="form-control relative">
-                    <label className="label">
-                      <span className="label-text">Password</span>
-                    </label>
-                    <input
-                      type={showPass ? "text" : "password"}
-                      name="password"
-                      placeholder="************"
-                      value={formData.password || ""}
-                      className="input input-bordered"
-                      onChange={handleChange}
-                      required
-                    />
-                    <span
-                      className="absolute right-5 top-[3.25rem]"
-                      onClick={() => setShowPass(!showPass)}
+    <>
+      <Helmet>
+        <title>Homestead | Register</title>
+      </Helmet>
+      <div className="my-10  container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
+        <div className="hero py-10 bg-base-100 rounded-xl">
+          <div className="hero-content  w-full flex-col">
+            <div className="text-center lg:text-left ">
+              <h1 className="text-4xl font-bold">
+                {successMsg || "Register Here"}
+              </h1>
+            </div>
+            <div className="card w-full max-w-lg shadow-2xl bg-base-100">
+              {successMsg ? (
+                <div className="my-10 mx-8 min-h-24">
+                  <Link to="/user-profile">
+                    <button
+                      onClick={handleGoToButton}
+                      className="btn btn-primary w-full"
                     >
-                      {showPass ? <BsEyeSlashFill /> : <BsFillEyeFill />}
-                    </span>
-                    {errMsg.passwordErrMsg && (
+                      Go to Your Profile
+                    </button>
+                  </Link>
+                </div>
+              ) : (
+                <>
+                  <form className="card-body" onSubmit={handleFormSubmit}>
+                    <div className="form-control">
+                      <label className="label">
+                        <span className="label-text">Your Name</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="name"
+                        value={formData.name || ""}
+                        className="input input-bordered"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    {errMsg.nameErrMsg && (
                       <p className="text-red-500 dark:text-yellow-400 dark:font-light text-center mt-3">
-                        {errMsg.passwordErrMsg}
+                        {errMsg.nameErrMsg}
                       </p>
                     )}
-                  </div>
-                  <div className="flex gap-2 mt-3">
-                    <input
-                      type="checkbox"
-                      checked={isChecked}
-                      onChange={() => setIsChecked(!isChecked)}
-                    />
-                    <a href="#" className="label-text-alt link link-hover">
-                      Accept All Terms & Conditions
-                    </a>
-                  </div>
-                  {(errMsg.googleErrMsg || errMsg.checkErrMsg) && (
-                    <p className="text-red-500 dark:text-yellow-400 dark:font-light text-center mt-3">
-                      {errMsg.googleErrMsg || errMsg.checkErrMsg}
-                    </p>
-                  )}
+                    <div className="form-control">
+                      <label className="label">
+                        <span className="label-text">Email</span>
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="name@domain.com"
+                        value={formData.email || ""}
+                        className="input input-bordered"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="form-control">
+                      <label className="label">
+                        <span className="label-text">Your Photo URL</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="photoUrl"
+                        placeholder="photo url"
+                        value={formData.photoUrl || ""}
+                        className="input input-bordered"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    {errMsg.photoUrlErrMsg && (
+                      <p className="text-red-500 dark:text-yellow-400 dark:font-light text-center mt-3">
+                        {errMsg.photoUrlErrMsg}
+                      </p>
+                    )}
+                    <div className="form-control relative">
+                      <label className="label">
+                        <span className="label-text">Password</span>
+                      </label>
+                      <input
+                        type={showPass ? "text" : "password"}
+                        name="password"
+                        placeholder="************"
+                        value={formData.password || ""}
+                        className="input input-bordered"
+                        onChange={handleChange}
+                        required
+                      />
+                      <span
+                        className="absolute right-5 top-[3.25rem]"
+                        onClick={() => setShowPass(!showPass)}
+                      >
+                        {showPass ? <BsEyeSlashFill /> : <BsFillEyeFill />}
+                      </span>
+                      {errMsg.passwordErrMsg && (
+                        <p className="text-red-500 dark:text-yellow-400 dark:font-light text-center mt-3">
+                          {errMsg.passwordErrMsg}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex gap-2 mt-3">
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={() => setIsChecked(!isChecked)}
+                      />
+                      <a href="#" className="label-text-alt link link-hover">
+                        Accept All Terms & Conditions
+                      </a>
+                    </div>
+                    {(errMsg.googleErrMsg || errMsg.checkErrMsg) && (
+                      <p className="text-red-500 dark:text-yellow-400 dark:font-light text-center mt-3">
+                        {errMsg.googleErrMsg || errMsg.checkErrMsg}
+                      </p>
+                    )}
 
-                  <div className="form-control mt-6">
-                    <button
-                      disabled={
-                        errMsg.nameErrMsg ||
-                        errMsg.photoUrlErrMsg ||
-                        errMsg.passwordErrMsg
-                      }
-                      className="btn btn-primary "
-                    >
-                      {pageLoading && <SpinnerAtButton />}
-                      Register
-                    </button>
+                    <div className="form-control mt-6">
+                      <button
+                        disabled={
+                          errMsg.nameErrMsg ||
+                          errMsg.photoUrlErrMsg ||
+                          errMsg.passwordErrMsg
+                        }
+                        className="btn btn-primary "
+                      >
+                        {pageLoading && <SpinnerAtButton />}
+                        Register
+                      </button>
+                    </div>
+                  </form>
+                  <div className="divider px-4">OR</div>
+                  <div className="card-body pt-0">
+                    {/* Register with google */}
+                    <div className="form-control mt-6">
+                      <GoogleButton
+                        text="Register with Google"
+                        handleBtn={handleGoogleRegister}
+                      />
+                    </div>
+                    {/* Register with GitHub */}
+                    <div className="form-control mt-6">
+                      <GithubButton
+                        text="Register with Github"
+                        handleBtn={handleGithubRegister}
+                      />
+                    </div>
+                    <label className="label  flex justify-center mt-5">
+                      <Link
+                        className="label-text-alt link link-hover"
+                        to="/login"
+                      >
+                        Already have an account?
+                      </Link>
+                    </label>
                   </div>
-                </form>
-                <div className="divider px-4">OR</div>
-                <div className="card-body pt-0">
-                  {/* Register with google */}
-                  <div className="form-control mt-6">
-                    <GoogleButton
-                      text="Register with Google"
-                      handleBtn={handleGoogleRegister}
-                    />
-                  </div>
-                  {/* Register with GitHub */}
-                  <div className="form-control mt-6">
-                    <GithubButton
-                      text="Register with Github"
-                      handleBtn={handleGithubRegister}
-                    />
-                  </div>
-                  <label className="label  flex justify-center mt-5">
-                    <Link
-                      className="label-text-alt link link-hover"
-                      to="/login"
-                    >
-                      Already have an account?
-                    </Link>
-                  </label>
-                </div>
-              </>
-            )}
-            <ToastContainer />
+                </>
+              )}
+              <ToastContainer />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

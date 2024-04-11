@@ -23,21 +23,56 @@ const NavBar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/about">About</NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
+          }
+        >
+          About
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
+          }
+        >
+          Contact
+        </NavLink>
       </li>
       {user && (
         <>
           <li>
-            <NavLink to="/user-profile">User Profile</NavLink>
+            <NavLink
+              to="/user-profile"
+              className={({ isActive }) =>
+                `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
+              }
+            >
+              User Profile
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/update-profile">Update Profile</NavLink>
+            <NavLink
+              to="/update-profile"
+              className={({ isActive }) =>
+                `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
+              }
+            >
+              Update Profile
+            </NavLink>
           </li>
         </>
       )}
