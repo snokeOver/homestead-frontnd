@@ -11,14 +11,31 @@ const NotFound = () => {
         <div className="hero py-10 rounded-lg bg-base-200">
           <div className="hero-content text-center work-font">
             <div className="max-w-md">
-              <h1 className="text-5xl font-bold ">
+              <h1
+                data-aos="fade-down"
+                data-aos-duration="800"
+                data-aos-easing="ease-in-sine"
+                className="text-5xl font-bold "
+              >
                 404! <span className="playfair-font">Not Found</span>
               </h1>
-              <p className="py-6">
+              <p
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="800"
+                data-aos-easing="ease-in-sine"
+                className="py-6"
+              >
                 The page your are looking for was not found!
               </p>
               <NavLink to="/">
-                <button className="btn bg-primary text-gray-100">
+                <button
+                  data-aos="zoom-in"
+                  data-aos-duration="800"
+                  data-aos-delay="1500"
+                  data-aos-easing="ease-in-sine"
+                  className="btn bg-primary text-gray-100"
+                >
                   Go Home
                 </button>
               </NavLink>

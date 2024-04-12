@@ -58,15 +58,31 @@ const Cart = () => {
         <div className="hero py-10 bg-base-100 rounded-xl">
           <div className="hero-content w-full flex-col">
             <div className="text-center lg:text-left ">
-              <h1 className="text-4xl font-bold">
+              <h1
+                data-aos="fade-down"
+                data-aos-duration="800"
+                data-aos-easing="ease-in-sine"
+                className="text-4xl font-bold"
+              >
                 {selectedEstates.length > 0
                   ? "Your Cart Details"
                   : "You Didn't Select Any Property Yet!"}
               </h1>
             </div>
             {selectedEstates.length > 0 && (
-              <div className="card w-full max-w-lg shadow-2xl bg-base-100">
-                <div className="overflow-x-auto py-7">
+              <div
+                data-aos="fade-right"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-sine"
+                className="card w-full max-w-lg shadow-2xl bg-base-100"
+              >
+                <div
+                  data-aos="fade-left"
+                  data-aos-duration="1000"
+                  data-aos-delay="900"
+                  data-aos-easing="ease-in-sine"
+                  className="overflow-x-auto py-7"
+                >
                   <table className="table">
                     {/* head */}
                     <thead>

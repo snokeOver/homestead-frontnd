@@ -75,14 +75,30 @@ const Banner = () => {
       </Swiper>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col gap-8 lg:gap-16 w-[90%]">
         <div className="text-center">
-          <h4 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-300 mb-3">
+          <h4
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-sine"
+            className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-300 mb-3"
+          >
             THE BEST WAY TO
           </h4>
-          <h1 className="text-2xl md:text-4xl lg:text-6xl xl:text-7xl text-gray-100">
+          <h1
+            data-aos="fade-left"
+            data-aos-delay="500"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-sine"
+            className="text-2xl md:text-4xl lg:text-6xl xl:text-7xl text-gray-100"
+          >
             Find Your Perfect Home
           </h1>
         </div>
-        <div className="w-[80%] lg:w-3/4 xl:w-1/2 mx-auto ">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          data-aos-delay="1000"
+          className="w-[80%] lg:w-3/4 xl:w-1/2 mx-auto "
+        >
           <form onSubmit={handleSearchButton}>
             <fieldset className="form-control w-full">
               <div className="join relative">

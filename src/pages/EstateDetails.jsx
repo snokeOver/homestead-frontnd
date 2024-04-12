@@ -71,7 +71,12 @@ const EstateDetails = () => {
               id="targetSection"
               className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:p-8"
             >
-              <figure className="w-full mx-auto rounded-xl ">
+              <figure
+                data-aos="zoom-in"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-sine"
+                className="w-full mx-auto rounded-xl "
+              >
                 <img
                   className="h-full py-4 "
                   src={estateToShow.image}
@@ -79,25 +84,57 @@ const EstateDetails = () => {
                 />
               </figure>
               <div className="card-body text-left w-full">
-                <h2 className="card-title text-2xl md:text-4xl font-bold text-heading-color playfair-font">
+                <h2
+                  data-aos="fade-down"
+                  data-aos-duration="800"
+                  data-aos-delay="500"
+                  data-aos-easing="ease-in-sine"
+                  className="card-title text-2xl md:text-4xl font-bold text-heading-color playfair-font"
+                >
                   {estateToShow.estate_title}
                 </h2>
 
                 <div className="flex justify-between  font-mediumpy-5 mt-3 text-message-color">
-                  <h4 className="text-lg text-left">{estateToShow.price}</h4>
-                  <h5 className=" px-4 py-1 bg-primary text-gray-100 font-semibold rounded-xl">
+                  <h4
+                    data-aos="fade-right"
+                    data-aos-duration="800"
+                    data-aos-delay="700"
+                    data-aos-easing="ease-in-sine"
+                    className="text-lg text-left"
+                  >
+                    {estateToShow.price}
+                  </h4>
+                  <h5
+                    data-aos="fade-left"
+                    data-aos-duration="800"
+                    data-aos-delay="700"
+                    data-aos-easing="ease-in-sine"
+                    className=" px-4 py-1 bg-primary text-gray-100 font-semibold rounded-xl"
+                  >
                     {estateToShow.status}
                   </h5>
                 </div>
 
-                <div className="my-2">
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="800"
+                  data-aos-delay="900"
+                  data-aos-easing="ease-in-sine"
+                  className="my-2"
+                >
                   <span className="font-extrabold text-lg mr-2">
                     Description:
-                  </span>{" "}
+                  </span>
                   <br />
                   <p className="text-justify">{estateToShow.description}</p>
                 </div>
-                <div className="my-2">
+                <div
+                  data-aos="fade-up"
+                  data-aos-duration="800"
+                  data-aos-delay="1000"
+                  data-aos-easing="ease-in-sine"
+                  className="my-2"
+                >
                   <span>
                     {estateToShow.facilities.map((item) => (
                       <span
@@ -111,14 +148,26 @@ const EstateDetails = () => {
                 </div>
                 <div className="divider mb-0"></div>
                 <div className="flex flex-col gap-3 font-medium  pt-5 text-message-color">
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <div
+                    data-aos="fade-left"
+                    data-aos-duration="800"
+                    data-aos-delay="1200"
+                    data-aos-easing="ease-in-sine"
+                    className="grid grid-cols-2 md:grid-cols-3 gap-3"
+                  >
                     <div className="flex items-center gap-3">
                       <FaLocationDot className="text-lg" />
                       <h3 className="text-message-color">Location:</h3>
                     </div>
                     <span className="font-bold">{estateToShow.location}</span>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <div
+                    data-aos="fade-right"
+                    data-aos-duration="800"
+                    data-aos-delay="1200"
+                    data-aos-easing="ease-in-sine"
+                    className="grid grid-cols-2 md:grid-cols-3 gap-3"
+                  >
                     <div className="flex items-center gap-3">
                       <IoBedOutline className="text-lg" />
                       <h3 className="text-message-color">Number of Rooms:</h3>
@@ -127,14 +176,26 @@ const EstateDetails = () => {
                       {estateToShow.rooms_number}
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <div
+                    data-aos="fade-left"
+                    data-aos-duration="800"
+                    data-aos-delay="1200"
+                    data-aos-easing="ease-in-sine"
+                    className="grid grid-cols-2 md:grid-cols-3 gap-3"
+                  >
                     <div className="flex items-center gap-3">
                       <LuScale3D className="text-lg" />
                       <h3 className="text-message-color">Total Areas:</h3>
                     </div>
                     <span className="font-bold">{estateToShow.area}</span>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <div
+                    data-aos="fade-right"
+                    data-aos-duration="800"
+                    data-aos-delay="1200"
+                    data-aos-easing="ease-in-sine"
+                    className="grid grid-cols-2 md:grid-cols-3 gap-3"
+                  >
                     <div className="flex items-center gap-3">
                       <FaTrowelBricks className="text-lg" />
                       <h3 className="text-message-color">
@@ -147,7 +208,13 @@ const EstateDetails = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-10 w-[90%] mx-auto mt-8">
+                <div
+                  data-aos="fade-up"
+                  data-aos-duration="800"
+                  data-aos-delay="1400"
+                  data-aos-easing="ease-in-sine"
+                  className="flex gap-10 w-[90%] mx-auto mt-8"
+                >
                   <button
                     onClick={() => handleAddCartButton(estateToShow.id)}
                     className="btn btn-primary flex-1   py-3 mb-3  rounded-md"

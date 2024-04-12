@@ -70,9 +70,20 @@ const UpdateProfile = () => {
         <div className="my-10 flex flex-col gap-6">
           <div className="card  w-full lg:w-1/2 mx-auto bg-base-100 shadow-xl rounded-md">
             <div className="card-body flex items-center ">
-              <h2 className="card-title text-3xl">Update Your Profile</h2>
+              <h2
+                data-aos="fade-down"
+                data-aos-duration="800"
+                data-aos-easing="ease-in-sine"
+                className="card-title text-3xl"
+              >
+                Update Your Profile
+              </h2>
               <div className="w-48 mt-5">
                 <img
+                  data-aos="zoom-in"
+                  data-aos-duration="800"
+                  data-aos-delay="500"
+                  data-aos-easing="ease-in-sine"
                   className="rounded-xl"
                   alt="User Photo"
                   src={user?.photoURL}
@@ -83,7 +94,13 @@ const UpdateProfile = () => {
           </div>
           <form onSubmit={handleUpdateProfile}>
             <div className="card card-compact mt-8 w-full lg:w-1/2 mx-auto bg-base-100 shadow-xl rounded-md">
-              <div className="card-body grid grid-cols-3 px-5 items-center gap-4 ">
+              <div
+                data-aos="fade-right"
+                data-aos-duration="800"
+                data-aos-delay="700"
+                data-aos-easing="ease-in-sine"
+                className="card-body grid grid-cols-3 px-5 items-center gap-4 "
+              >
                 <h3>Your Name:</h3>
                 <input
                   name="name"
@@ -95,7 +112,13 @@ const UpdateProfile = () => {
                 />
               </div>
 
-              <div className="card-body grid grid-cols-3  px-5 items-center gap-4">
+              <div
+                data-aos="fade-left"
+                data-aos-duration="800"
+                data-aos-delay="900"
+                data-aos-easing="ease-in-sine"
+                className="card-body grid grid-cols-3  px-5 items-center gap-4"
+              >
                 <h3>Photo Url:</h3>
 
                 <input
@@ -108,7 +131,14 @@ const UpdateProfile = () => {
                 />
               </div>
               <div className="card-body w-full md:w-[80%] mx-auto  px-5 items-center gap-4 mb-6">
-                <button type="submit" className="btn btn-primary w-full border">
+                <button
+                  data-aos="zoom-in"
+                  data-aos-duration="800"
+                  data-aos-delay="1500"
+                  data-aos-easing="ease-in-sine"
+                  type="submit"
+                  className="btn btn-primary w-full border"
+                >
                   {pageLoading && <SpinnerAtButton />}
                   Update
                 </button>

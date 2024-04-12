@@ -39,14 +39,32 @@ const Contact = () => {
       <div className="my-10 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
         <div className="hero py-10 mt-10 bg-base-200 rounded-lg md:w-[90%] mx-auto">
           <div className="hero-content flex-col lg:gap-24 lg:flex-row-reverse">
-            <div className="text-center lg:text-left">
+            <div
+              data-aos="fade-left"
+              data-aos-duration="800"
+              data-aos-easing="ease-in-sine"
+              className="text-center lg:text-left"
+            >
               <h1 className="text-5xl font-bold">Contact now!</h1>
               <p className="py-6">
                 Tell us what is your querry and we'll contact you soon.
               </p>
             </div>
-            <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-              <form className="card-body" onSubmit={handleSubmit}>
+            <div
+              data-aos="fade-right"
+              data-aos-duration="800"
+              data-aos-delay="500"
+              data-aos-easing="ease-in-sine"
+              className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
+            >
+              <form
+                data-aos="fade-left"
+                data-aos-duration="1200"
+                data-aos-delay="1200"
+                data-aos-easing="ease-in-sine"
+                className="card-body"
+                onSubmit={handleSubmit}
+              >
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Your Name</span>

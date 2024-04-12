@@ -240,7 +240,9 @@ const Register = () => {
   // Handle firebase Registration success
   const firebaseRegiSuccess = () => {
     toast("Registration Successful!");
+    setRegiSuccess(true);
     setSuccessMsg("Registration Successful!");
+    setPageLoading(true);
     setTimeout(() => {
       setRegiSuccess(false);
       setPageLoading(false);
@@ -267,7 +269,7 @@ const Register = () => {
                 <div className="my-10 mx-8 min-h-24">
                   <button className="btn btn-primary w-full">
                     {pageLoading && <SpinnerAtButton />}
-                    We are Logging you in.
+                    Please Wait while we are Logging you in.
                   </button>
                 </div>
               ) : (

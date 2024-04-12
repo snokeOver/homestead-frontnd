@@ -19,8 +19,8 @@ const OurPartner = () => {
       />
       <div className="text-center bg-base-100 p-3 py-10 md:py-14">
         <div className="grid grid-cols-2  lg:grid-cols-4 gap-10 px-5 group">
-          {partners.map((partner) => (
-            <PartnerCard key={partner.id} partner={partner} />
+          {partners.map((partner, index) => (
+            <PartnerCard index={index} key={partner.id} partner={partner} />
           ))}
         </div>
       </div>
