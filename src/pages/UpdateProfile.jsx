@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 import SpinnerAtButton from "../components/sharedComponents/SpinnerAtButton";
 import { Helmet } from "react-helmet-async";
 
 const UpdateProfile = () => {
-  const { user, updateProfileInfo } = useContext(AuthContext);
+  const { user, updateProfileInfo, currTheme } = useContext(AuthContext);
   const [pageLoading, setPageLoading] = useState(false);
   const [firebaseError, setFirebaseError] = useState("");
   const [updateMsg, setUpdateMsg] = useState("");
@@ -116,8 +115,8 @@ const UpdateProfile = () => {
               </div>
             </div>
           </form>
-          <ToastContainer />
         </div>
+        <ToastContainer theme={currTheme} />
       </div>
     </>
   );

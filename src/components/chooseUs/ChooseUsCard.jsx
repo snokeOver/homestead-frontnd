@@ -18,10 +18,9 @@ const ChooseUsCard = ({ reason }) => {
 
   // Get the icon component based on the image string from JSON data
   const IconComponent = iconComponents[reason.image];
-  console.log(IconComponent);
 
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 group-hover:scale-[.88] hover:!scale-100 duration-500">
       <IconComponent className="text-7xl" /> {/* Render the icon component */}
       <div className="text-left">
         <h3 className="mb-2">{reason.title}</h3>

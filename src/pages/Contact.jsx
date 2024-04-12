@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Contact = () => {
+  const { currTheme } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+
+  const [darkMode, setDarkMode] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -96,10 +99,10 @@ const Contact = () => {
                   </button>
                 </div>
               </form>
-              <ToastContainer />
             </div>
           </div>
         </div>
+        <ToastContainer theme={currTheme} />
       </div>
     </>
   );

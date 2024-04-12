@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import { AuthContext } from "../providers/AuthProvider.jsx";
 import SpinnerAtButton from "../components/sharedComponents/SpinnerAtButton.jsx";
 import GithubButton from "../components/sharedComponents/GithubButton.jsx";
@@ -11,8 +12,15 @@ import GoogleButton from "../components/sharedComponents/GoogleButton.jsx";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
-  const { signInUser, googleRegister, githubRegister, setLoginSuccess } =
-    useContext(AuthContext);
+  const {
+    signInUser,
+    googleRegister,
+    githubRegister,
+    setLoginSuccess,
+    logOutSuccess,
+    setLogOutSuccess,
+    currTheme,
+  } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,6 +43,7 @@ const Login = () => {
     }));
   };
 
+  // Handle errors toast
   useEffect(() => {
     if (googleErrMsg) {
       toast(googleErrMsg);
@@ -106,6 +115,14 @@ const Login = () => {
     setPageLoading(false);
     navigate(location?.state ? location.state : "/");
   };
+
+  // Log Out success Toast
+  useEffect(() => {
+    if (logOutSuccess) {
+      toast("Log Out Successfull!");
+      setLogOutSuccess(false);
+    }
+  }, [logOutSuccess]);
 
   return (
     <>
@@ -188,11 +205,10 @@ const Login = () => {
                   </Link>
                 </label>
               </div>
-
-              <ToastContainer />
             </div>
           </div>
         </div>
+        <ToastContainer theme={currTheme} />
       </div>
     </>
   );

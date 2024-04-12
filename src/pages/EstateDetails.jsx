@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { FaLocationDot } from "react-icons/fa6";
 import { LuScale3D } from "react-icons/lu";
@@ -11,11 +11,11 @@ import PageSkeleton from "../components/sharedComponents/PageSkeleton";
 import { Helmet } from "react-helmet-async";
 import { getPropertyIds, storePropertyId } from "../services/storeCartItems";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const EstateDetails = () => {
-  const { estates, setCartNumber } = useContext(AuthContext);
+  const { user, estates, setCartNumber, currTheme } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [estateToShow, setEstateToShow] = useState({});
   const { id } = useParams();
   const [pageLoading, setPageLoading] = useState(true);
@@ -37,6 +37,9 @@ const EstateDetails = () => {
 
   // Handle the add to cart button
   const handleAddCartButton = (id) => {
+    if (!user) {
+      return toast("First, You need to log in.");
+    }
     const result = getPropertyIds();
     if (result.includes(id)) {
       return toast("Property Already Added To Cart");
@@ -157,7 +160,7 @@ const EstateDetails = () => {
             </div>
           )}
         </div>
-        <ToastContainer />
+        <ToastContainer theme={currTheme} />
       </div>
     </>
   );

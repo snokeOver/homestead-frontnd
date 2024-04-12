@@ -1,26 +1,40 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import ThemeButton from "./ThemeButton";
 import { IoHome } from "react-icons/io5";
 import RingLoading from "../sharedComponents/RingLoading";
+import { deleteAllPropertyIds } from "../../services/storeCartItems";
 
 const NavBar = () => {
-  const { loading, user, setUser, logOut, cartNumber } =
-    useContext(AuthContext);
+  const {
+    loading,
+    user,
+    setUser,
+    logOut,
+    cartNumber,
+    setCartNumber,
+    setLogOutSuccess,
+    pageLoading,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [isHovering, setIsHovering] = useState(false);
 
+  // Handle log out button
   const handleLogOut = () => {
     logOut()
       .then((result) => {
         setUser(null);
+        setLogOutSuccess(true);
+        deleteAllPropertyIds();
+        setCartNumber(0);
         navigate("/login");
       })
       .catch((err) => console.log(err.message));
   };
 
+  // define the navlinks
   const navLinks = (
     <>
       <li>
@@ -53,7 +67,7 @@ const NavBar = () => {
           Contact
         </NavLink>
       </li>
-      {loading ? (
+      {loading || pageLoading ? (
         <RingLoading />
       ) : (
         user && (
@@ -143,7 +157,7 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks} </ul>
       </div>
-      {loading ? (
+      {loading || pageLoading ? (
         <div className="lg:hidden">
           <RingLoading />
         </div>
@@ -175,7 +189,9 @@ const NavBar = () => {
       <div className="navbar-end">
         <ThemeButton />
 
-        {user ? (
+        {loading || pageLoading ? (
+          <RingLoading />
+        ) : user ? (
           <>
             <div
               tabIndex={0}
@@ -189,7 +205,7 @@ const NavBar = () => {
               >
                 <img
                   alt="User Photo"
-                  src={user?.photoURL}
+                  src={user.photoURL}
                   onError={handleImageError}
                 />
                 {isHovering && (
@@ -211,24 +227,20 @@ const NavBar = () => {
           </>
         ) : (
           <>
-            {loading ? (
-              <RingLoading />
-            ) : (
-              <>
-                <Link
-                  className="btn btn-outline btn-success dark:btn-info px-3 rounded-sm btn-sm mr-3"
-                  to="/register"
-                >
-                  Register
-                </Link>
-                <Link
-                  className="btn btn-primary px-3 rounded-sm btn-sm"
-                  to="/login"
-                >
-                  Login
-                </Link>
-              </>
-            )}
+            <>
+              <Link
+                className="btn btn-outline btn-success dark:btn-info px-3 rounded-sm btn-sm mr-3"
+                to="/register"
+              >
+                Register
+              </Link>
+              <Link
+                className="btn btn-primary px-3 rounded-sm btn-sm"
+                to="/login"
+              >
+                Login
+              </Link>
+            </>
           </>
         )}
       </div>

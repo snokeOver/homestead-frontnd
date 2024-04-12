@@ -16,6 +16,11 @@ const deletePropertyId = (id) => {
   }
 };
 
+// delete the Id from the localstorage
+const deleteAllPropertyIds = () => {
+  localStorage.removeItem(cartStorageName);
+};
+
 // Store the property Ids if it is not in the storage
 const storePropertyId = (id) => {
   const result = getPropertyIds();
@@ -25,4 +30,9 @@ const storePropertyId = (id) => {
   }
 };
 
-export { getPropertyIds, storePropertyId, deletePropertyId };
+export {
+  getPropertyIds,
+  storePropertyId,
+  deletePropertyId,
+  deleteAllPropertyIds,
+};

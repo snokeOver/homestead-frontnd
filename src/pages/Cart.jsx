@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 import { deletePropertyId, getPropertyIds } from "../services/storeCartItems";
 import SingleProperty from "../components/cartDetails/SingleProperty";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Cart = () => {
-  const { estates, setCartNumber } = useContext(AuthContext);
+  const { estates, setCartNumber, currTheme } = useContext(AuthContext);
   const [selectedEstates, setSelectedEstates] = useState([]);
   const [deleteCall, setDeleteCall] = useState(true);
   const [totalPrice, setTotalPrice] = useState("");
@@ -30,6 +29,7 @@ const Cart = () => {
   const handleDeleteProperty = (id) => {
     deletePropertyId(id);
     setDeleteCall(true);
+    toast("Items deleted succesfully");
   };
 
   //   get the stored Property ids and filter them from the all estates
@@ -99,6 +99,7 @@ const Cart = () => {
             )}
           </div>
         </div>
+        <ToastContainer theme={currTheme} />
       </div>
     </>
   );

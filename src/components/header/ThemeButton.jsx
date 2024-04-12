@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   getCurrentTheme,
   storeCurrentTheme,
 } from "../../services/themeStorage";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const ThemeButton = () => {
+  const { currTheme, setCurrTheme } = useContext(AuthContext);
   const defaultTheme = "light";
-  const [currTheme, setCurrTheme] = useState("");
 
   const handleThemeButton = () => {
     const newTheme = currTheme === "light" ? "dark" : "light";

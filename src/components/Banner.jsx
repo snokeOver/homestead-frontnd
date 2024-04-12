@@ -18,8 +18,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const Banner = () => {
   const { loginSuccess, setLoginSuccess } = useContext(AuthContext);
@@ -101,7 +100,6 @@ const Banner = () => {
           </form>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

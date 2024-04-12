@@ -18,8 +18,12 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [estates, setEstates] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [pageLoading, setPageLoading] = useState(false);
   const [regiSuccess, setRegiSuccess] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [logOutSuccess, setLogOutSuccess] = useState(false);
+  const [currTheme, setCurrTheme] = useState("");
 
   const [cartNumber, setCartNumber] = useState(0);
 
@@ -67,7 +71,7 @@ const AuthProvider = ({ children }) => {
       }
       return () => unSubscribe();
     });
-  }, []);
+  }, [regiSuccess]);
 
   // load the estate data
   useEffect(() => {
@@ -93,12 +97,18 @@ const AuthProvider = ({ children }) => {
     githubRegister,
     loginSuccess,
     setLoginSuccess,
+    logOutSuccess,
+    setLogOutSuccess,
     estates,
     setEstates,
     cartNumber,
     setCartNumber,
+    currTheme,
+    setCurrTheme,
+    pageLoading,
+    setPageLoading,
   };
-  // console.log("inside context:", regiSuccess);
+  // console.log("inside context:", user?.photoURL);
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

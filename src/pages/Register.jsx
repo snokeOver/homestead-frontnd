@@ -1,9 +1,10 @@
 import { BsEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import { AuthContext } from "../providers/AuthProvider.jsx";
 import SpinnerAtButton from "../components/sharedComponents/SpinnerAtButton.jsx";
 
@@ -18,7 +19,12 @@ const Register = () => {
     googleRegister,
     setRegiSuccess,
     githubRegister,
+    currTheme,
+    setLoginSuccess,
+    pageLoading,
+    setPageLoading,
   } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -40,7 +46,6 @@ const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [pageLoading, setPageLoading] = useState(false);
 
   // This should handle all the changes of different fields
   const handleChange = (e) => {
@@ -66,7 +71,6 @@ const Register = () => {
   // This should handle submission of form
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setPageLoading(true);
     resetErrMsg();
     setSuccessMsg("");
 
@@ -76,7 +80,7 @@ const Register = () => {
         checkErrMsg: "You must accept all our Terms & Conditions",
       }));
     }
-
+    setPageLoading(true);
     registerUser(formData.email, formData.password)
       .then((result) => {
         const user = result.user;
@@ -170,7 +174,7 @@ const Register = () => {
       } else if (!/[a-z]/.test(formData.password)) {
         return setErrMsg((prevData) => ({
           ...prevData,
-          passwordErrMsg: "Password must include at least one upper case!",
+          passwordErrMsg: "Password must include at least one lower case!",
         }));
       } else if (!/[0-9]/.test(formData.password)) {
         return setErrMsg((prevData) => ({
@@ -190,11 +194,6 @@ const Register = () => {
   useEffect(() => {
     resetErrMsg();
   }, []);
-
-  // handle the Go to button
-  const handleGoToButton = () => {
-    setRegiSuccess(false);
-  };
 
   // handle the Register with Google button
   const handleGoogleRegister = () => {
@@ -225,7 +224,12 @@ const Register = () => {
     if (err.code === "auth/email-already-in-use") {
       setErrMsg((prevData) => ({
         ...prevData,
-        googleErrMsg: `${formData.email} is already taken.`,
+        googleErrMsg: `"${formData.email}" is already taken.`,
+      }));
+    } else if (err.code === "auth/invalid-email") {
+      setErrMsg((prevData) => ({
+        ...prevData,
+        googleErrMsg: `"${formData.email}" is invalid email.`,
       }));
     } else
       setErrMsg((prevData) => ({ ...prevData, googleErrMsg: err.message }));
@@ -235,9 +239,14 @@ const Register = () => {
 
   // Handle firebase Registration success
   const firebaseRegiSuccess = () => {
-    setPageLoading(false);
     toast("Registration Successful!");
     setSuccessMsg("Registration Successful!");
+    setTimeout(() => {
+      setRegiSuccess(false);
+      setPageLoading(false);
+      setLoginSuccess(true);
+      navigate("/");
+    }, 3000);
   };
 
   return (
@@ -256,14 +265,10 @@ const Register = () => {
             <div className="card w-full max-w-lg shadow-2xl bg-base-100">
               {successMsg ? (
                 <div className="my-10 mx-8 min-h-24">
-                  <Link to="/user-profile">
-                    <button
-                      onClick={handleGoToButton}
-                      className="btn btn-primary w-full"
-                    >
-                      Go to Your Profile
-                    </button>
-                  </Link>
+                  <button className="btn btn-primary w-full">
+                    {pageLoading && <SpinnerAtButton />}
+                    We are Logging you in.
+                  </button>
                 </div>
               ) : (
                 <>
@@ -402,10 +407,10 @@ const Register = () => {
                   </div>
                 </>
               )}
-              <ToastContainer />
             </div>
           </div>
         </div>
+        <ToastContainer theme={currTheme} />
       </div>
     </>
   );

@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { getPropertyIds, storePropertyId } from "../../services/storeCartItems";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const EstateSection = () => {
-  const { estates, setCartNumber } = useContext(AuthContext);
+  const { user, estates, setCartNumber } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // handle the show property button
@@ -19,6 +18,9 @@ const EstateSection = () => {
 
   // Handle the add to cart button
   const handleAddCartButton = (id) => {
+    if (!user) {
+      return toast("First, You need to log in.");
+    }
     const result = getPropertyIds();
     if (result.includes(id)) {
       return toast("Property Already Added To Cart");
@@ -47,7 +49,6 @@ const EstateSection = () => {
           ))}
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };
