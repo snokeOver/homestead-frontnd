@@ -21,6 +21,9 @@ export default {
           ".navbarr": {
             "background-color": "#e0dede",
           },
+
+          "--swiper-navigation-color": "#2196F3",
+          "--swiper-pagination-color": "#2196F3",
         },
       },
       {
@@ -31,6 +34,9 @@ export default {
           ".navbarr": {
             "background-color": "#242323",
           },
+
+          "--swiper-navigation-color": "green",
+          "--swiper-pagination-color": "green",
         },
       },
     ],

@@ -6,11 +6,16 @@ import { FaLocationDot } from "react-icons/fa6";
 import { LuScale3D } from "react-icons/lu";
 import { IoBedOutline } from "react-icons/io5";
 import { FaTrowelBricks } from "react-icons/fa6";
+import { BsCart4 } from "react-icons/bs";
 import PageSkeleton from "../components/sharedComponents/PageSkeleton";
 import { Helmet } from "react-helmet-async";
+import { getPropertyIds, storePropertyId } from "../services/storeCartItems";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EstateDetails = () => {
-  const { estates } = useContext(AuthContext);
+  const { estates, setCartNumber } = useContext(AuthContext);
   const [estateToShow, setEstateToShow] = useState({});
   const { id } = useParams();
   const [pageLoading, setPageLoading] = useState(true);
@@ -29,6 +34,18 @@ const EstateDetails = () => {
       .querySelector("#targetSection")
       .scrollIntoView({ behavior: "smooth" });
   }
+
+  // Handle the add to cart button
+  const handleAddCartButton = (id) => {
+    const result = getPropertyIds();
+    if (result.includes(id)) {
+      return toast("Property Already Added To Cart");
+    } else {
+      storePropertyId(id);
+      setCartNumber(result.length + 1);
+      return toast("Property Added Succesfully");
+    }
+  };
 
   useEffect(() => {
     console.log;
@@ -127,24 +144,20 @@ const EstateDetails = () => {
                   </div>
                 </div>
 
-                {/* <div className="flex gap-10">
-            <button
-              onClick={() => handleReadButton(booksToShow.bookId)}
-              className="mt-5 lg:mt-14 btn text-gray-600   lg:text-xl font-bold px-4 py-0 md:px-6 md:py-3 lg:px-8 lg:py-4 h-auto border border-gray-300 bg-gray-50  rounded-md"
-            >
-              Read
-            </button>
-            <button
-              onClick={() => handleWishButton(booksToShow.bookId)}
-              className="mt-5 lg:mt-14 btn text-gray-100 bg-[#50B1C9] hover:bg-[#59CEEE]   lg:text-xl font-bold px-4 py-0 md:px-6 md:py-3 lg:px-8 lg:py-4 h-auto border-none rounded-md"
-            >
-              Wishlist
-            </button>
-          </div> */}
+                <div className="flex gap-10 w-[90%] mx-auto mt-8">
+                  <button
+                    onClick={() => handleAddCartButton(estateToShow.id)}
+                    className="btn btn-primary flex-1   py-3 mb-3  rounded-md"
+                  >
+                    <BsCart4 className=" text-xl" />
+                    Add To Cart
+                  </button>
+                </div>
               </div>
             </div>
           )}
         </div>
+        <ToastContainer />
       </div>
     </>
   );

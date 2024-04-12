@@ -52,7 +52,7 @@ const Cart = () => {
   return (
     <>
       <Helmet>
-        <title>Homestead | Your Cart</title>
+        <title>Homestead | Cart</title>
       </Helmet>
       <div className="my-10  container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
         <div className="hero py-10 bg-base-100 rounded-xl">
@@ -66,7 +66,7 @@ const Cart = () => {
             </div>
             {selectedEstates.length > 0 && (
               <div className="card w-full max-w-lg shadow-2xl bg-base-100">
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto py-7">
                   <table className="table">
                     {/* head */}
                     <thead>

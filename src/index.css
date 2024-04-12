@@ -52,3 +52,20 @@ img {
   height: 18px;
   width: 18px;
 }
+
+/* Custom size of the arrow button of slider */
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 25px !important;
+  font-weight: 800;
+}
+
+/* Choose Use section Bg Images Style */
+#choose_us_img {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.295),
+      rgba(0, 0, 0, 0.404)
+    ),
+    url("https://i.ibb.co/fN1xtdP/7-urban.jpg");
+}

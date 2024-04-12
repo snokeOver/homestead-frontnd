@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
 import Banner from "../components/Banner";
-import { AuthContext } from "../providers/AuthProvider";
+import ChooseUs from "../components/chooseUs/ChooseUs";
 import EstateSection from "../components/estateSection/EstateSection";
 import { Helmet } from "react-helmet-async";
+import OurPartner from "../components/ourPartner/OurPartner";
 
 const Home = () => {
-  const { regiSuccess } = useContext(AuthContext);
   return (
     <>
       <Helmet>
@@ -14,6 +13,10 @@ const Home = () => {
       <Banner />
       <div className="container mx-auto">
         <EstateSection />
+      </div>
+      <ChooseUs />
+      <div className="container mx-auto">
+        <OurPartner />
       </div>
     </>
   );
