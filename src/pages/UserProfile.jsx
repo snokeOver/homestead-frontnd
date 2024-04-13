@@ -22,7 +22,7 @@ const UserProfile = () => {
         <title>Homestead | User Profile</title>
       </Helmet>
       <div className="my-10 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
-        <div className="my-10 flex flex-col gap-6">
+        <div className="flex flex-col gap-6">
           <div className="card  w-full lg:w-1/2 mx-auto bg-base-100 shadow-xl rounded-md">
             <div className="card-body flex items-center ">
               <h2

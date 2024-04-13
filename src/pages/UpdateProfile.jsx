@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-
+import { FaLock } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import SpinnerAtButton from "../components/sharedComponents/SpinnerAtButton";
 import { Helmet } from "react-helmet-async";
@@ -70,7 +70,7 @@ const UpdateProfile = () => {
         <title>Homestead | Update Profile</title>
       </Helmet>
       <div className="my-10 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
-        <div className="my-10 flex flex-col gap-6">
+        <div className=" flex flex-col gap-6">
           <div className="card  w-full lg:w-1/2 mx-auto bg-base-100 shadow-xl rounded-md">
             <div className="card-body flex items-center ">
               <h2
@@ -97,6 +97,25 @@ const UpdateProfile = () => {
           </div>
           <form onSubmit={handleUpdateProfile}>
             <div className="card card-compact mt-8 w-full lg:w-1/2 mx-auto bg-base-100 shadow-xl rounded-md">
+              <div
+                data-aos="fade-left"
+                data-aos-duration="800"
+                data-aos-delay="700"
+                data-aos-easing="ease-in-sine"
+                className=" card-body grid grid-cols-3 px-5 items-center gap-4 "
+              >
+                <h3>Your Email:</h3>
+                <div className="relative col-span-2">
+                  <input
+                    name="email"
+                    readOnly
+                    type="text"
+                    placeholder={user.email}
+                    className="input  input-bordered  input-md w-full max-w-xs "
+                  />
+                  <FaLock className="text-lg absolute right-5 bottom-4 sm:right-20 md:right-32 lg:right-5 xl:right-16 2xl:right-40" />
+                </div>
+              </div>
               <div
                 data-aos="fade-right"
                 data-aos-duration="800"

@@ -6,7 +6,7 @@
 <h2>Features and Characteristics</h2>
 <ul>
   <li>Estate Selection: Browse and select from a curated collection of 9 properties/Estates across various facilities.</li>
-  <li>Add-To-Cart Functionality: Users can add Properties to their cart for future reference or buy.</li>
+  <li>Add-To-Cart Functionality: Users can add Properties to their cart for future reference or buy. Different users with different emails using same browser will have their privacy in cart section.</li>
   <li>Contact Us Page: Dedicated page for users to reach out with inquiries, feedback, or support requests.</li>
   <li>About Us Section: Learn more about the background, mission, and values of Homestead.</li>
 <li>Multi-Register-Login & Update_Profile: Handle user authentication and registration via Google, Github, email-password, as well as profile updates.</li>
@@ -23,7 +23,7 @@
 <ul>
   <li>Firebase: Used for secure and robust user registration, loggin, authentication.</li>
   <li>React-Router, React-Router-Dom: To handle all routing of this SPA.</li>
-  <li>React-Helmet-Async: To show the page name dynamically on the browser tab.</li>
+  <li>React-Helmet-Async: To show the page title dynamically on the browser tab.</li>
 <li>React-Toastify: Used for making visually pleasable toast on user actions.</li>
 
 </ul>
