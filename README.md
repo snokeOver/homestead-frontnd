@@ -12,13 +12,18 @@
 <li>Multi-Register-Login & Update_Profile: Handle user authentication and registration via Google, Github, email-password, as well as profile updates.</li>
 </ul>
 
-<h2>Packages/Technologies Used</h2>
+<h2>Packages/Technologies Used in Challenge Section</h2>
+<ul>
+  <li>Leaflet, React-Leaflet, React-Leaflet_cluster: For displaying office locations on Maps and grop together the locations .</li>
+<li>Swiper: Used to show the banner images in a slide view.</li>
+<li>AOS: To handle the animation on scroll accross the pages.</li>
+</ul>
+
+<h2>Other Packages/Technologies Used</h2>
 <ul>
   <li>Firebase: Used for secure and robust user registration, loggin, authentication.</li>
-  <li>Leaflet, React-Leaflet, React-Leaflet_cluster: For displaying office locations on Maps and grop together the locations .</li>
-  <li>React-Router: To handle all routing of this SPA.</li>
-  <li>react-helmet-async: To show the page name dynamically on the browser tab.</li>
-<li>react-toastify: Used for making visually pleasable toast on user actions.</li>
-<li>swiper: Used to show the banner images in a slide view.</li>
-<li>aos: To handle the animation on scroll accross the pages.</li>
+  <li>React-Router, React-Router-Dom: To handle all routing of this SPA.</li>
+  <li>React-Helmet-Async: To show the page name dynamically on the browser tab.</li>
+<li>React-Toastify: Used for making visually pleasable toast on user actions.</li>
+
 </ul>

@@ -6,10 +6,12 @@ import SpinnerAtButton from "../components/sharedComponents/SpinnerAtButton";
 import { Helmet } from "react-helmet-async";
 
 const UpdateProfile = () => {
-  const { user, updateProfileInfo, currTheme } = useContext(AuthContext);
+  const { user, updateProfileInfo, currTheme, setProfileUpdate } =
+    useContext(AuthContext);
   const [pageLoading, setPageLoading] = useState(false);
   const [firebaseError, setFirebaseError] = useState("");
   const [updateMsg, setUpdateMsg] = useState("");
+  const fallbackPPUrl = "https://i.ibb.co/vxg6nY4/user.png";
 
   const [formData, setFormData] = useState({
     name: user.displayName || "",
@@ -41,6 +43,7 @@ const UpdateProfile = () => {
       .then((result) => {
         setFirebaseError("");
         setUpdateMsg("Profile Updated Successfully!");
+        setProfileUpdate(true);
         setPageLoading(false);
       })
       .catch((err) => {
@@ -84,9 +87,9 @@ const UpdateProfile = () => {
                   data-aos-duration="800"
                   data-aos-delay="500"
                   data-aos-easing="ease-in-sine"
-                  className="rounded-xl"
+                  className="rounded-md"
                   alt="User Photo"
-                  src={user?.photoURL}
+                  src={user?.photoURL || fallbackPPUrl}
                   onError={handleImageError}
                 />
               </div>

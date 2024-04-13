@@ -21,11 +21,11 @@ const EstateSection = () => {
     if (!user) {
       return toast("First, You need to log in.");
     }
-    const result = getPropertyIds();
+    const result = getPropertyIds(user?.email);
     if (result.includes(id)) {
       return toast("Property Already Added To Cart");
     } else {
-      storePropertyId(id);
+      storePropertyId(user?.email, id);
       setCartNumber(result.length + 1);
       return toast("Property Added Succesfully");
     }

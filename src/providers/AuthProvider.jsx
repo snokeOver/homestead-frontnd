@@ -24,8 +24,17 @@ const AuthProvider = ({ children }) => {
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [logOutSuccess, setLogOutSuccess] = useState(false);
   const [currTheme, setCurrTheme] = useState("");
+  const [profileUpdate, setProfileUpdate] = useState(false);
 
   const [cartNumber, setCartNumber] = useState(0);
+
+  // Update the cart number
+  useEffect(() => {
+    if (user) {
+      const currentNumber = getPropertyIds(user?.email);
+      setCartNumber(currentNumber.length);
+    }
+  }, [user]);
 
   const registerUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -58,24 +67,25 @@ const AuthProvider = ({ children }) => {
 
   // watch for the change in user
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     const unSubscribe = onAuthStateChanged(auth, (currUser) => {
       if (currUser) {
         setUser(currUser);
         setLoading(false);
-        // console.log(currUser);
+        setProfileUpdate(false);
       } else {
         setUser(null);
         setLoading(false);
         setRegiSuccess(true);
+        setProfileUpdate(false);
       }
       return () => unSubscribe();
     });
-  }, [regiSuccess]);
+  }, [regiSuccess, profileUpdate]);
 
   // load the estate data
   useEffect(() => {
-    const currentPropertyArr = getPropertyIds();
+    const currentPropertyArr = getPropertyIds(user?.email);
     setCartNumber(currentPropertyArr.length);
     fetch("/residents.json")
       .then((data) => data.json())
@@ -107,6 +117,8 @@ const AuthProvider = ({ children }) => {
     setCurrTheme,
     pageLoading,
     setPageLoading,
+    profileUpdate,
+    setProfileUpdate,
   };
   // console.log("inside context:", user?.photoURL);
   return (

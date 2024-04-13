@@ -6,9 +6,15 @@ const UserProfile = () => {
   const { user } = useContext(AuthContext);
 
   // fallback for Profile image to show default image
-  const handleImageError = (event) => {
-    event.target.src = "https://i.ibb.co/vxg6nY4/user.png";
+  const fallbackPPUrl = "https://i.ibb.co/vxg6nY4/user.png";
+
+  // convert timezone into local
+  const convertTimezoneToLocal = (timeStamp) => {
+    const date = new Date(timeStamp);
+    return date.toLocaleString();
   };
+  const createTime = convertTimezoneToLocal(user.metadata.creationTime);
+  const logTime = convertTimezoneToLocal(user.metadata.lastSignInTime);
 
   return (
     <>
@@ -33,10 +39,9 @@ const UserProfile = () => {
                   data-aos-duration="800"
                   data-aos-delay="500"
                   data-aos-easing="ease-in-sine"
-                  className="rounded-xl"
+                  className="rounded-md"
                   alt="User Photo"
-                  src={user?.photoURL}
-                  onError={handleImageError}
+                  src={user?.photoURL || fallbackPPUrl}
                 />
               </div>
             </div>
@@ -117,7 +122,7 @@ const UserProfile = () => {
               <input
                 readOnly
                 type="text"
-                placeholder={user.metadata.creationTime}
+                placeholder={createTime}
                 className="input col-span-2 input-bordered  input-md w-full max-w-xs"
               />
             </div>
@@ -133,7 +138,7 @@ const UserProfile = () => {
               <input
                 readOnly
                 type="text"
-                placeholder={user.metadata.lastSignInTime}
+                placeholder={logTime}
                 className="input col-span-2 input-bordered  input-md w-full max-w-xs"
               />
             </div>

@@ -7,7 +7,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const ThemeButton = () => {
   const { currTheme, setCurrTheme } = useContext(AuthContext);
-  const defaultTheme = "light";
+  const defaultTheme = "dark";
 
   const handleThemeButton = () => {
     const newTheme = currTheme === "light" ? "dark" : "light";

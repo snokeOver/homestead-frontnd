@@ -6,7 +6,7 @@ import SingleProperty from "../components/cartDetails/SingleProperty";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Cart = () => {
-  const { estates, setCartNumber, currTheme } = useContext(AuthContext);
+  const { user, estates, setCartNumber, currTheme } = useContext(AuthContext);
   const [selectedEstates, setSelectedEstates] = useState([]);
   const [deleteCall, setDeleteCall] = useState(true);
   const [totalPrice, setTotalPrice] = useState("");
@@ -27,7 +27,7 @@ const Cart = () => {
 
   //  handle the delete button and delete the ids from the local storage
   const handleDeleteProperty = (id) => {
-    deletePropertyId(id);
+    deletePropertyId(user?.email, id);
     setDeleteCall(true);
     toast("Items deleted succesfully");
   };
@@ -35,7 +35,7 @@ const Cart = () => {
   //   get the stored Property ids and filter them from the all estates
   useEffect(() => {
     if (deleteCall) {
-      const currPropIds = getPropertyIds();
+      const currPropIds = getPropertyIds(user?.email);
       setCartNumber(currPropIds.length);
       const newEstates = estates.filter((estate) =>
         currPropIds.includes(estate.id)

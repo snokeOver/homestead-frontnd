@@ -26,7 +26,7 @@ const ChooseUsCard = ({ reason, index }) => {
       data-aos-delay="300"
       data-aos-easing="ease-in-sine"
     >
-      <div className="flex gap-5 group-hover:scale-[.88] hover:!scale-100 duration-500">
+      <div className="flex gap-5 group-hover:scale-[.88] hover:!scale-100 duration-500 text-gray-300">
         <IconComponent className="text-7xl" /> {/* Render the icon component */}
         <div className="text-left">
           <h3 className="mb-2">{reason.title}</h3>

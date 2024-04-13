@@ -4,7 +4,6 @@ import { AuthContext } from "../../providers/AuthProvider";
 import ThemeButton from "./ThemeButton";
 import { IoHome } from "react-icons/io5";
 import RingLoading from "../sharedComponents/RingLoading";
-import { deleteAllPropertyIds } from "../../services/storeCartItems";
 
 const NavBar = () => {
   const {
@@ -18,6 +17,7 @@ const NavBar = () => {
     pageLoading,
   } = useContext(AuthContext);
   const navigate = useNavigate();
+  const fallbackPPUrl = "https://i.ibb.co/vxg6nY4/user.png";
 
   const [isHovering, setIsHovering] = useState(false);
 
@@ -27,7 +27,6 @@ const NavBar = () => {
       .then((result) => {
         setUser(null);
         setLogOutSuccess(true);
-        deleteAllPropertyIds();
         setCartNumber(0);
         navigate("/login");
       })
@@ -205,7 +204,7 @@ const NavBar = () => {
               >
                 <img
                   alt="User Photo"
-                  src={user.photoURL}
+                  src={user.photoURL || fallbackPPUrl}
                   onError={handleImageError}
                 />
                 {isHovering && (
