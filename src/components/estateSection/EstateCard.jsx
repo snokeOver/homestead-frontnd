@@ -44,7 +44,7 @@ const EstateCard = ({ estate, handleShowDetailsBtn, handleAddCartButton }) => {
             className="btn btn-primary btn-outline flex-1   py-3 mb-3  rounded-md"
           >
             <BsFillEyeFill className="text-xl" />
-            View Property
+            View Details
           </button>
           <button
             onClick={() => handleAddCartButton(estate.id)}

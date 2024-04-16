@@ -11,10 +11,8 @@ import PageSkeleton from "../components/sharedComponents/PageSkeleton";
 import { Helmet } from "react-helmet-async";
 import { getPropertyIds, storePropertyId } from "../services/storeCartItems";
 
-import { toast, ToastContainer } from "react-toastify";
-
 const EstateDetails = () => {
-  const { user, estates, setCartNumber, currTheme } = useContext(AuthContext);
+  const { user, estates, setCartNumber, setToastMsg } = useContext(AuthContext);
   const navigate = useNavigate();
   const [estateToShow, setEstateToShow] = useState({});
   const { id } = useParams();
@@ -29,29 +27,29 @@ const EstateDetails = () => {
   }, [estates]);
 
   // for smooth scroll to the target section
-  function smoothTransition() {
+  const smoothTransition = () => {
     document
       .querySelector("#targetSection")
       .scrollIntoView({ behavior: "smooth" });
-  }
+  };
 
   // Handle the add to cart button
   const handleAddCartButton = (id) => {
     if (!user) {
-      return toast("First, You need to log in.");
+      navigate("/login");
+      window.scrollTo(0, 0);
     }
     const result = getPropertyIds(user?.email);
     if (result.includes(id)) {
-      return toast("Property Already Added To Cart");
+      return setToastMsg("Property Already Added To Cart  !");
     } else {
       storePropertyId(user?.email, id);
       setCartNumber(result.length + 1);
-      return toast("Property Added Succesfully");
+      return setToastMsg("Property Added Succesfully  !");
     }
   };
 
   useEffect(() => {
-    console.log;
     if (!pageLoading) smoothTransition();
   }, [pageLoading]);
 
@@ -87,7 +85,7 @@ const EstateDetails = () => {
                 <h2
                   data-aos="fade-down"
                   data-aos-duration="800"
-                  data-aos-delay="500"
+                  data-aos-delay="100"
                   data-aos-easing="ease-in-sine"
                   className="card-title text-2xl md:text-4xl font-bold text-heading-color playfair-font"
                 >
@@ -98,7 +96,7 @@ const EstateDetails = () => {
                   <h4
                     data-aos="fade-right"
                     data-aos-duration="800"
-                    data-aos-delay="700"
+                    data-aos-delay="150"
                     data-aos-easing="ease-in-sine"
                     className="text-lg text-left"
                   >
@@ -107,7 +105,7 @@ const EstateDetails = () => {
                   <h5
                     data-aos="fade-left"
                     data-aos-duration="800"
-                    data-aos-delay="700"
+                    data-aos-delay="200"
                     data-aos-easing="ease-in-sine"
                     className=" px-4 py-1 bg-primary text-gray-100 font-semibold rounded-xl"
                   >
@@ -118,7 +116,7 @@ const EstateDetails = () => {
                 <div
                   data-aos="zoom-in"
                   data-aos-duration="800"
-                  data-aos-delay="900"
+                  data-aos-delay="250"
                   data-aos-easing="ease-in-sine"
                   className="my-2"
                 >
@@ -131,27 +129,32 @@ const EstateDetails = () => {
                 <div
                   data-aos="fade-up"
                   data-aos-duration="800"
-                  data-aos-delay="1000"
+                  data-aos-delay="300"
                   data-aos-easing="ease-in-sine"
                   className="my-2"
                 >
-                  <span>
+                  <div className="flex flex-col md:flex-row gap-3">
                     {estateToShow.facilities.map((item) => (
-                      <span
-                        className="bg-primary font-medium rounded-lg px-4 py-1  mr-4"
-                        key={item}
-                      >
-                        #{item}
-                      </span>
+                      <div>
+                        <div
+                          className="bg-primary font-medium rounded-lg px-4 py-1 inline-block"
+                          key={item}
+                        >
+                          #{item}
+                        </div>
+                      </div>
                     ))}
-                  </span>
+                  </div>
                 </div>
+                {/* <div className="bg-red-500">
+                  <p className="bg-green-500 inline-block">#living-room</p>
+                </div> */}
                 <div className="divider mb-0"></div>
                 <div className="flex flex-col gap-3 font-medium  pt-5 text-message-color">
                   <div
                     data-aos="fade-left"
                     data-aos-duration="800"
-                    data-aos-delay="1200"
+                    data-aos-delay="350"
                     data-aos-easing="ease-in-sine"
                     className="grid grid-cols-2 md:grid-cols-3 gap-3"
                   >
@@ -164,7 +167,7 @@ const EstateDetails = () => {
                   <div
                     data-aos="fade-right"
                     data-aos-duration="800"
-                    data-aos-delay="1200"
+                    data-aos-delay="400"
                     data-aos-easing="ease-in-sine"
                     className="grid grid-cols-2 md:grid-cols-3 gap-3"
                   >
@@ -179,7 +182,7 @@ const EstateDetails = () => {
                   <div
                     data-aos="fade-left"
                     data-aos-duration="800"
-                    data-aos-delay="1200"
+                    data-aos-delay="450"
                     data-aos-easing="ease-in-sine"
                     className="grid grid-cols-2 md:grid-cols-3 gap-3"
                   >
@@ -192,7 +195,7 @@ const EstateDetails = () => {
                   <div
                     data-aos="fade-right"
                     data-aos-duration="800"
-                    data-aos-delay="1200"
+                    data-aos-delay="500"
                     data-aos-easing="ease-in-sine"
                     className="grid grid-cols-2 md:grid-cols-3 gap-3"
                   >
@@ -211,7 +214,7 @@ const EstateDetails = () => {
                 <div
                   data-aos="fade-up"
                   data-aos-duration="800"
-                  data-aos-delay="1400"
+                  data-aos-delay="600"
                   data-aos-easing="ease-in-sine"
                   className="flex gap-10 w-[90%] mx-auto mt-8"
                 >
@@ -227,7 +230,6 @@ const EstateDetails = () => {
             </div>
           )}
         </div>
-        <ToastContainer theme={currTheme} />
       </div>
     </>
   );

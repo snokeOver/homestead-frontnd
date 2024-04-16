@@ -7,7 +7,7 @@ const OfficeDetail = ({ officeDetail }) => {
         role="tab"
         className="tab"
         aria-label={officeDetail.role}
-        checked
+        defaultChecked
       />
       <div
         role="tabpanel"
@@ -16,7 +16,7 @@ const OfficeDetail = ({ officeDetail }) => {
         <div className=" flex flex-col gap-6">
           <div className="mb-2">
             <p className="font-semibold">Address:</p>
-            <p>{officeDetail.address}</p>
+            <p dangerouslySetInnerHTML={{ __html: officeDetail.address }}></p>
           </div>
           <div className="mb-2">
             <p className="font-semibold">Phone:</p>

@@ -2,9 +2,6 @@ import { BsEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { AuthContext } from "../providers/AuthProvider.jsx";
 import SpinnerAtButton from "../components/sharedComponents/SpinnerAtButton.jsx";
 
@@ -19,10 +16,9 @@ const Register = () => {
     googleRegister,
     setRegiSuccess,
     githubRegister,
-    currTheme,
-    setLoginSuccess,
     pageLoading,
     setPageLoading,
+    setToastMsg,
   } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -64,7 +60,6 @@ const Register = () => {
       photoUrlErrMsg: "",
       passwordErrMsg: "",
       checkErrMsg: "",
-      googleErrMsg: "",
     });
   };
 
@@ -222,31 +217,26 @@ const Register = () => {
     console.log(err.message);
     console.log(err.code);
     if (err.code === "auth/email-already-in-use") {
-      setErrMsg((prevData) => ({
-        ...prevData,
-        googleErrMsg: `"${formData.email}" is already taken.`,
-      }));
+      setToastMsg(`"${formData.email}" is already taken !`);
     } else if (err.code === "auth/invalid-email") {
-      setErrMsg((prevData) => ({
-        ...prevData,
-        googleErrMsg: `"${formData.email}" is invalid email.`,
-      }));
-    } else
-      setErrMsg((prevData) => ({ ...prevData, googleErrMsg: err.message }));
+      setToastMsg(`"${formData.email}" is invalid email !`);
+    } else setToastMsg(err.message);
+
     setSuccessMsg("");
     setPageLoading(false);
   };
 
-  // Handle firebase Registration success
+  // Handle All Successful firebase Registration
   const firebaseRegiSuccess = () => {
-    toast("Registration Successful!");
+    setToastMsg("Registration Successful  !");
+
     setRegiSuccess(true);
-    setSuccessMsg("Registration Successful!");
+    setSuccessMsg("Registration Successful  !");
     setPageLoading(true);
     setTimeout(() => {
       setRegiSuccess(false);
       setPageLoading(false);
-      setLoginSuccess(true);
+      setToastMsg("Login Successful  !");
       navigate("/");
     }, 3000);
   };
@@ -257,7 +247,7 @@ const Register = () => {
         <title>Homestead | Register</title>
       </Helmet>
       <div className="my-10  container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
-        <div className="hero py-10 bg-base-100 rounded-xl">
+        <div className="hero bg-base-100 rounded-xl">
           <div className="hero-content  w-full flex-col">
             <div className="text-center lg:text-left ">
               <h1 className="text-4xl font-bold">
@@ -267,9 +257,12 @@ const Register = () => {
             <div className="card w-full max-w-lg shadow-2xl bg-base-100">
               {successMsg ? (
                 <div className="my-10 mx-8 min-h-24">
+                  <h1 className="text-2xl font-bold text-center mb-5 text-green-500">
+                    Please Wait !
+                  </h1>
                   <button className="btn btn-primary w-full">
                     {pageLoading && <SpinnerAtButton />}
-                    Please Wait while we are Logging you in.
+                    we are Logging you in.
                   </button>
                 </div>
               ) : (
@@ -341,10 +334,14 @@ const Register = () => {
                         required
                       />
                       <span
-                        className="absolute right-5 top-[3.25rem]"
+                        className="absolute right-5 top-[3.0rem]"
                         onClick={() => setShowPass(!showPass)}
                       >
-                        {showPass ? <BsEyeSlashFill /> : <BsFillEyeFill />}
+                        {showPass ? (
+                          <BsEyeSlashFill className="text-2xl cursor-pointer text-secondary" />
+                        ) : (
+                          <BsFillEyeFill className="text-2xl cursor-pointer text-secondary" />
+                        )}
                       </span>
                       {errMsg.passwordErrMsg && (
                         <p className="text-red-500 dark:text-yellow-400 dark:font-light text-center mt-3">
@@ -362,9 +359,9 @@ const Register = () => {
                         Accept All Terms & Conditions
                       </a>
                     </div>
-                    {(errMsg.googleErrMsg || errMsg.checkErrMsg) && (
+                    {errMsg.checkErrMsg && (
                       <p className="text-red-500 dark:text-yellow-400 dark:font-light text-center mt-3">
-                        {errMsg.googleErrMsg || errMsg.checkErrMsg}
+                        {errMsg.checkErrMsg}
                       </p>
                     )}
 
@@ -400,7 +397,7 @@ const Register = () => {
                     </div>
                     <label className="label  flex justify-center mt-5">
                       <Link
-                        className="label-text-alt link link-hover"
+                        className="label-text-alt link link-hover text-blue-700 dark:text-blue-600 font-semibold"
                         to="/login"
                       >
                         Already have an account?
@@ -412,7 +409,6 @@ const Register = () => {
             </div>
           </div>
         </div>
-        <ToastContainer theme={currTheme} />
       </div>
     </>
   );

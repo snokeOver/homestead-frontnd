@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import SocialLinks from "../sharedComponents/SocialLinks";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Footer = () => {
+  const { toastMsg, setToastMsg, currTheme } = useContext(AuthContext);
+  useEffect(() => {
+    if (toastMsg) {
+      toast(toastMsg, {
+        position: "bottom-center",
+      });
+    }
+    setToastMsg("");
+  }, [toastMsg]);
   return (
     <footer className=" p-10 bg-base-100 text-base-content">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-10 ">
@@ -18,8 +30,12 @@ const Footer = () => {
           <nav>
             <h6 className="footer-title">Company</h6>
             <a className="link link-hover">Our Branches</a>
-            <a className="link link-hover">About us</a>
-            <a className="link link-hover">Contact</a>
+            <NavLink className="link link-hover" to="/about">
+              About Us
+            </NavLink>
+            <NavLink className="link link-hover" to="/contact">
+              Contact
+            </NavLink>
           </nav>
         </div>
         <div className="footer flex justify-center">
@@ -62,6 +78,7 @@ const Footer = () => {
           </p>
         </aside>
       </div>
+      <ToastContainer theme={currTheme} />
     </footer>
   );
 };

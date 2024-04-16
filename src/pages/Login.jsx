@@ -2,9 +2,6 @@ import { BsEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { AuthContext } from "../providers/AuthProvider.jsx";
 import SpinnerAtButton from "../components/sharedComponents/SpinnerAtButton.jsx";
 import GithubButton from "../components/sharedComponents/GithubButton.jsx";
@@ -16,10 +13,9 @@ const Login = () => {
     signInUser,
     googleRegister,
     githubRegister,
-    setLoginSuccess,
     logOutSuccess,
     setLogOutSuccess,
-    currTheme,
+    setToastMsg,
   } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -46,7 +42,7 @@ const Login = () => {
   // Handle errors toast
   useEffect(() => {
     if (googleErrMsg) {
-      toast(googleErrMsg);
+      setToastMsg(googleErrMsg);
     }
   }, [googleErrMsg]);
 
@@ -101,16 +97,16 @@ const Login = () => {
     console.log(err.message);
     console.log(err.code);
     if (err.code === "auth/invalid-credential") {
-      setGoogleErrMsg("Either email or password is wrong!");
+      setGoogleErrMsg("Either email or password is wrong  !");
     } else {
       setGoogleErrMsg(err.code);
     }
     setPageLoading(false);
   };
 
-  // Handle firebase Login success
+  // Handle All successful firebase Login
   const firebaseLoginSuccess = (result) => {
-    setLoginSuccess(true);
+    setToastMsg("Login Successful  !");
     const user = result.user;
     setPageLoading(false);
     navigate(location?.state ? location.state : "/");
@@ -119,7 +115,7 @@ const Login = () => {
   // Log Out success Toast
   useEffect(() => {
     if (logOutSuccess) {
-      toast("Log Out Successfull!");
+      setToastMsg("Log out successfull  !");
       setLogOutSuccess(false);
     }
   }, [logOutSuccess]);
@@ -130,7 +126,7 @@ const Login = () => {
         <title>Homestead | Login</title>
       </Helmet>
       <div className="my-10  container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
-        <div className="hero py-24 bg-base-100 rounded-xl">
+        <div className="hero bg-base-100 rounded-xl">
           <div className="hero-content  w-full flex-col">
             <div className="text-center lg:text-left ">
               <h1 className="text-4xl font-bold">Login Here</h1>
@@ -166,10 +162,14 @@ const Login = () => {
                     required
                   />
                   <span
-                    className="absolute right-5 top-[3.25rem]"
+                    className="absolute right-5 top-[3.05rem]"
                     onClick={() => setShowPass(!showPass)}
                   >
-                    {showPass ? <BsEyeSlashFill /> : <BsFillEyeFill />}
+                    {showPass ? (
+                      <BsEyeSlashFill className="text-2xl cursor-pointer text-secondary" />
+                    ) : (
+                      <BsFillEyeFill className="text-2xl cursor-pointer text-secondary" />
+                    )}
                   </span>
                 </div>
 
@@ -198,7 +198,7 @@ const Login = () => {
                 </div>
                 <label className="label  flex justify-center mt-5">
                   <Link
-                    className="label-text-alt link link-hover"
+                    className="label-text-alt link link-hover text-blue-700 dark:text-blue-600 font-semibold "
                     to="/register"
                   >
                     Don't have an account?
@@ -208,7 +208,6 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <ToastContainer theme={currTheme} />
       </div>
     </>
   );

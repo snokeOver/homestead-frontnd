@@ -4,16 +4,9 @@ import EstateSection from "../components/estateSection/EstateSection";
 import { Helmet } from "react-helmet-async";
 import OurPartner from "../components/ourPartner/OurPartner";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import { useContext } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-
 const Home = () => {
-  const { currTheme } = useContext(AuthContext);
   return (
-    <>
+    <div className="w-full overflow-hidden">
       <Helmet>
         <title>Homestead | Home</title>
       </Helmet>
@@ -25,9 +18,7 @@ const Home = () => {
       <div className="container mx-auto">
         <OurPartner />
       </div>
-
-      <ToastContainer theme={currTheme} />
-    </>
+    </div>
   );
 };
 

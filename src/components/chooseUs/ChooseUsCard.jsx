@@ -23,7 +23,6 @@ const ChooseUsCard = ({ reason, index }) => {
     <div
       data-aos={index % 2 === 0 ? "fade-down" : "fade-up"}
       data-aos-duration="800"
-      data-aos-delay="300"
       data-aos-easing="ease-in-sine"
     >
       <div className="flex gap-5 group-hover:scale-[.88] hover:!scale-100 duration-500 text-gray-300">

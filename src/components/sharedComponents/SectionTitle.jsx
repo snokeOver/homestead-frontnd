@@ -12,7 +12,8 @@ const SectionTitle = ({ title, subTitle = "" }) => {
       {subTitle && (
         <p
           data-aos="fade-up-right"
-          data-aos-duration="1200"
+          data-aos-duration="800"
+          data-aos-delay="400"
           data-aos-easing="ease-in-sine"
           className="text-message-color font-inter hidden md:inline-block md:text-base lg:text-lg md:w-3/4 "
         >

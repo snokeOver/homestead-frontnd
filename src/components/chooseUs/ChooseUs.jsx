@@ -13,7 +13,7 @@ const ChooseUs = () => {
     <div className="py-10">
       <div
         id="choose_us_img"
-        className="relative bg-cover h-[720px] bg-no-repeat  flex flex-col items-center text-center justify-center gap-1 md:gap-3 lg:gap-10"
+        className="relative bg-cover h-[820px]  md:h-[720px] bg-no-repeat  flex flex-col items-center text-center justify-center gap-1 md:gap-3 lg:gap-10"
       >
         <h1 className="text-2xl md:text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-100">
           Why Choose Us

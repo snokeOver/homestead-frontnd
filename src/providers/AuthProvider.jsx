@@ -21,10 +21,11 @@ const AuthProvider = ({ children }) => {
 
   const [pageLoading, setPageLoading] = useState(false);
   const [regiSuccess, setRegiSuccess] = useState(false);
-  const [loginSuccess, setLoginSuccess] = useState(false);
   const [logOutSuccess, setLogOutSuccess] = useState(false);
   const [currTheme, setCurrTheme] = useState("");
   const [profileUpdate, setProfileUpdate] = useState(false);
+
+  const [toastMsg, setToastMsg] = useState("");
 
   const [cartNumber, setCartNumber] = useState(0);
 
@@ -105,8 +106,6 @@ const AuthProvider = ({ children }) => {
     regiSuccess,
     googleRegister,
     githubRegister,
-    loginSuccess,
-    setLoginSuccess,
     logOutSuccess,
     setLogOutSuccess,
     estates,
@@ -119,6 +118,8 @@ const AuthProvider = ({ children }) => {
     setPageLoading,
     profileUpdate,
     setProfileUpdate,
+    toastMsg,
+    setToastMsg,
   };
   // console.log("inside context:", user?.photoURL);
   return (

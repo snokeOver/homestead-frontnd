@@ -9,7 +9,7 @@ const About = () => {
       <Helmet>
         <title>Homestead | About</title>
       </Helmet>
-      <div className="my-10 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
+      <div className="my-10 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen w-full overflow-hidden">
         <div className="my-10">
           <h3 className="text-3xl font-semibold mb-5">Homestead History</h3>
         </div>
@@ -30,7 +30,7 @@ const About = () => {
             <h2
               data-aos="fade-left"
               data-aos-duration="800"
-              data-aos-delay="2500"
+              data-aos-delay="1600"
               data-aos-easing="ease-in-sine"
               className="card-title"
             >
@@ -41,7 +41,7 @@ const About = () => {
             <p
               data-aos="fade-left"
               data-aos-duration="800"
-              data-aos-delay="2000"
+              data-aos-delay="1300"
               data-aos-easing="ease-in-sine"
               className="font-light text-gray-400"
             >
@@ -53,7 +53,7 @@ const About = () => {
             <p
               data-aos="fade-left"
               data-aos-duration="800"
-              data-aos-delay="1400"
+              data-aos-delay="1000"
               data-aos-easing="ease-in-sine"
               className="font-light text-gray-400"
             >
@@ -83,7 +83,7 @@ const About = () => {
           <div
             data-aos="fade-right"
             data-aos-duration="800"
-            data-aos-delay="100"
+            data-aos-delay="400"
             data-aos-easing="ease-in-sine"
             className="xl:col-span-2"
           >
@@ -91,9 +91,9 @@ const About = () => {
           </div>
           <div
             data-aos="zoom-in"
-            data-aos-duration="800"
+            data-aos-duration="1000"
             data-aos-easing="ease-in-sine"
-            className=" xl:col-span-3 bg-base-200 shadow-xl mx-3 min-h-96 grid items-center "
+            className=" xl:col-span-3 bg-base-200 border my-3 shadow-xl mx-3 min-h-96 grid items-center rounded-xl"
           >
             <CustomMap />
           </div>

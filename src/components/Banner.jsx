@@ -5,6 +5,7 @@ import {
   Scrollbar,
   A11y,
   EffectCube,
+  Autoplay,
 } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,13 +17,9 @@ import "swiper/css/effect-cube";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 const Banner = () => {
-  const { loginSuccess, setLoginSuccess } = useContext(AuthContext);
-
   const [images, setImages] = useState([]);
   useEffect(() => {
     fetch("/sliderImages.json")
@@ -30,23 +27,23 @@ const Banner = () => {
       .then((images) => setImages(images));
   }, []);
 
+  // Manage the search functionality
   const handleSearchButton = (e) => {
     e.preventDefault();
   };
-
-  // Login success Toast
-  useEffect(() => {
-    if (loginSuccess) {
-      toast("Login Successfull!");
-      setLoginSuccess(false);
-    }
-  }, [loginSuccess]);
 
   return (
     <div className="py-10 relative z-0">
       <Swiper
         // install Swiper modules
-        modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
+        modules={[
+          Navigation,
+          Pagination,
+          Scrollbar,
+          A11y,
+          EffectCube,
+          Autoplay,
+        ]}
         effect={"cube"}
         cubeEffect={{
           shadow: true,
@@ -59,8 +56,11 @@ const Banner = () => {
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log("slide change")}
+        // autoplay
+        autoplay={{
+          delay: 4500,
+          disableOnInteraction: false,
+        }}
       >
         {images.map((image) => (
           <SwiperSlide key={image.id}>

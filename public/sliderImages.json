@@ -14,9 +14,30 @@
     "title": "Luxurious Downtown Apartment",
     "image_url": "https://i.ibb.co/wzvfjJK/1.jpg"
   },
+
   {
     "id": 4,
     "title": "Spacious Family House",
     "image_url": "https://i.ibb.co/TPd0trv/4.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Spacious Family House",
+    "image_url": "https://i.ibb.co/m4Y098b/6.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Spacious Family House",
+    "image_url": "https://i.ibb.co/WFJ0HWv/5.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Spacious Family House",
+    "image_url": "https://i.ibb.co/MP2LQyD/7.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Spacious Family House",
+    "image_url": "https://i.ibb.co/51JPRm9/8.jpg"
   }
 ]

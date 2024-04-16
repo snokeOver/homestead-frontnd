@@ -1,21 +1,17 @@
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { toast, ToastContainer } from "react-toastify";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Contact = () => {
-  const { currTheme } = useContext(AuthContext);
+  const { setToastMsg } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  const [darkMode, setDarkMode] = useState(true);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -24,7 +20,8 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast("Submitted! We'll Contact You Soon.");
+    setToastMsg("Submitted  ! We'll contact you soon  !");
+
     setFormData({
       name: "",
       email: "",
@@ -36,8 +33,8 @@ const Contact = () => {
       <Helmet>
         <title>Homestead | Contact</title>
       </Helmet>
-      <div className="my-10 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
-        <div className="hero py-10 mt-10 bg-base-200 rounded-lg md:w-[90%] mx-auto">
+      <div className="my-10 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen w-full overflow-hidden">
+        <div className="hero py-2 md:py-10 mt-10 bg-base-200 rounded-lg md:w-[90%] mx-auto">
           <div className="hero-content flex-col lg:gap-24 lg:flex-row-reverse">
             <div
               data-aos="fade-left"
@@ -45,7 +42,7 @@ const Contact = () => {
               data-aos-easing="ease-in-sine"
               className="text-center lg:text-left"
             >
-              <h1 className="text-5xl font-bold">Contact now!</h1>
+              <h1 className="text-3xl md:text-5xl font-bold">Contact now!</h1>
               <p className="py-6">
                 Tell us what is your querry and we'll contact you soon.
               </p>
@@ -120,7 +117,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <ToastContainer theme={currTheme} />
       </div>
     </>
   );
