@@ -67,48 +67,53 @@ const NavBar = () => {
         </NavLink>
       </li>
 
-      {user && (
-        <>
-          <li>
-            <NavLink
-              to="/user-profile"
-              className={({ isActive }) =>
-                `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
-              }
-            >
-              Profile
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/update-profile"
-              className={({ isActive }) =>
-                `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
-              }
-            >
-              Update Profile
-            </NavLink>
-          </li>
-        </>
-      )}
-
       {loading || pageLoading ? (
         <RingLoading />
       ) : (
-        <li className="relative hidden lg:block">
-          <NavLink
-            to="/cart"
-            className={({ isActive }) =>
-              `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
-            }
-          >
-            Cart
-          </NavLink>
+        <>
+          {user && (
+            <>
+              <li>
+                <NavLink
+                  to="/user-profile"
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "border border-primary bg-base-100" : ""
+                    } mr-1`
+                  }
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/update-profile"
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "border border-primary bg-base-100" : ""
+                    } mr-1`
+                  }
+                >
+                  Update Profile
+                </NavLink>
+              </li>
+            </>
+          )}
+          <li className="relative hidden lg:block">
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                `${isActive ? "border border-primary bg-base-100" : ""} mr-1`
+              }
+            >
+              Cart
+            </NavLink>
 
-          <div className="absolute right-1 -top-0 navbar-badge bg-primary rounded-full font-semibold flex justify-center">
-            <span>{cartNumber}</span>
-          </div>
-        </li>
+            <div className="absolute right-1 -top-0 navbar-badge bg-primary rounded-full font-semibold flex justify-center">
+              <span>{cartNumber}</span>
+            </div>
+          </li>
+        </>
       )}
     </>
   );

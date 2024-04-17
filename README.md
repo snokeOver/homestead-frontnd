@@ -11,13 +11,13 @@
 - **_About Us Section_**: Learn more about the background, mission, and values of Homestead.
 - **_Multi-Register-Login & Update_Profile_**: Handle user authentication and registration via Google, Github, email-password, as well as profile updates.
 
-<h2>Packages/Technologies Used in Challenge Section</h2>
+<h2>Packages Used in Challenge Section</h2>
 
 - **_Leaflet, React-Leaflet, React-Leaflet_cluster_**: For displaying office locations on Maps and group together the locations.
 - **_Swiper_**: Used to show the banner images in a slide view.
 - **_AOS_**: To handle the animation on scroll across the pages.
 
-<h2>Other Packages/Technologies Used</h2>
+<h2>Other Packages Used</h2>
 
 - **_Firebase_**: Used for secure and robust user registration, logging, authentication.
 - **_React-Router, React-Router-Dom_**: To handle all routing of this SPA.

@@ -45,7 +45,7 @@ const EstateDetails = () => {
     } else {
       storePropertyId(user?.email, id);
       setCartNumber(result.length + 1);
-      return setToastMsg("Property Added Succesfully  !");
+      return setToastMsg("Property added succesfully  !");
     }
   };
 
