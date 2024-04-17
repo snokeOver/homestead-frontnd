@@ -6,6 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { LuScale3D } from "react-icons/lu";
 import { IoBedOutline } from "react-icons/io5";
 import { FaTrowelBricks } from "react-icons/fa6";
+import { BiCategoryAlt } from "react-icons/bi";
 import { BsCart4 } from "react-icons/bs";
 import PageSkeleton from "../components/sharedComponents/PageSkeleton";
 import { Helmet } from "react-helmet-async";
@@ -125,6 +126,22 @@ const EstateDetails = () => {
                   </span>
                   <br />
                   <p className="text-justify">{estateToShow.description}</p>
+                </div>
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="800"
+                  data-aos-delay="250"
+                  data-aos-easing="ease-in-sine"
+                  className="my-2"
+                >
+                  <div>
+                    <span className="font-extrabold text-lg mr-2">
+                      Category:
+                      <span className="text-base font-normal ml-3">
+                        {estateToShow.segment_name}
+                      </span>
+                    </span>
+                  </div>
                 </div>
                 <div
                   data-aos="fade-up"
